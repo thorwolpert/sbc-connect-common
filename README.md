@@ -17,9 +17,13 @@
 ```bash
 gcloud init
 ```
-Get your default credentials in place
+Get your default credentials in place, choose one of:
 ```bash
 gcloud auth application-default login
+```
+**or**
+```bash
+poetry self update && poetry self add keyrings.google-artifactregistry-auth
 ```
 Register the python artifact repo as _sbc-connect_
 ```bash
