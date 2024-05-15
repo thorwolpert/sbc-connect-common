@@ -39,9 +39,11 @@ from concurrent.futures import CancelledError
 from concurrent.futures import TimeoutError
 from contextlib import suppress
 import json
+from typing import Final
 from typing import Optional
 
 from flask import Flask
+from flask import current_app
 from google.auth import jwt
 from google.cloud import pubsub_v1
 from simple_cloudevent import CloudEventVersionException
@@ -55,6 +57,9 @@ from werkzeug.local import LocalProxy
 
 class GcpQueue:
     """Provides Queue type services"""
+
+    FLASK_NAME: Final = "SBC_CONNECT_GCP_QUEUE"
+    DEBUG_NAME: Final = "SBC_CONNECT_GCP_QUEUE_DEBUG"
 
     def __init__(self, app: Flask = None):
         """Initializes the GCP Queue class"""
@@ -127,12 +132,16 @@ class GcpQueue:
     def get_envelope(request: LocalProxy) -> Optional[dict]:
         """Returns the envelope"""
 
-        with suppress(Exception):
+        try:
             if (envelope := request.get_json()) and GcpQueue.is_valid_envelope(
                 envelope
             ):
                 return envelope
-        return None
+        except Exception as err:
+            if 'current_app' in locals():
+                if current_app.config.get(GcpQueue.DEBUG_NAME):
+                    print(err)
+            return None
 
     @staticmethod
     def get_simple_cloud_event(
