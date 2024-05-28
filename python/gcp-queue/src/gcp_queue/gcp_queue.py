@@ -77,11 +77,11 @@ class GcpQueue:
             try:
                 audience = app.config.get(
                     "AUDIENCE",
-                    "pubsub.googleapis.com/google.pubsub.v1.Subscriber",
+                    "https://pubsub.googleapis.com/google.pubsub.v1.Subscriber",
                 )
                 publisher_audience = app.config.get(
                     "PUBLISHER_AUDIENCE",
-                    "pubsub.googleapis.com/google.pubsub.v1.Publisher",
+                    "https://pubsub.googleapis.com/google.pubsub.v1.Publisher",
                 )
 
                 self.service_account_info = json.loads(
@@ -106,7 +106,7 @@ class GcpQueue:
             self._publisher = pubsub_v1.PublisherClient(
                 credentials=self.credentials_pub
             )
-        else:
+        elif not self._publisher:
             self._publisher = pubsub_v1.PublisherClient()
         return self._publisher
 
@@ -193,13 +193,13 @@ class GcpQueue:
         # we fell out the bottom here
         return None
 
-    def publish(self, topic: str, payload: bytes):
+    def publish(self, topic: str, payload: bytes, **kwargs):
         """Send payload to the queue."""
         if not (publisher := self.publisher):
             raise Exception("missing setup arguments")  # pylint: disable=W0719
 
         try:
-            future = publisher.publish(topic, payload)
+            future = publisher.publish(topic, payload, **kwargs)
 
             return future.result()
         except (CancelledError, TimeoutError) as error:
