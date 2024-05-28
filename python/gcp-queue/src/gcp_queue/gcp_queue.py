@@ -77,11 +77,11 @@ class GcpQueue:
             try:
                 audience = app.config.get(
                     "AUDIENCE",
-                    "pubsub.googleapis.com/google.pubsub.v1.Subscriber",
+                    "https://pubsub.googleapis.com/google.pubsub.v1.Subscriber",
                 )
                 publisher_audience = app.config.get(
                     "PUBLISHER_AUDIENCE",
-                    "pubsub.googleapis.com/google.pubsub.v1.Publisher",
+                    "https://pubsub.googleapis.com/google.pubsub.v1.Publisher",
                 )
 
                 self.service_account_info = json.loads(
