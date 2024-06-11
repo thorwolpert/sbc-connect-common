@@ -63,6 +63,7 @@ class GcpQueue:
         self.credentials_pub = None
         self.gcp_auth_key = None
         self.enable_message_ordering = False
+        self.publisher_options = ()
         self.publisher_audience = None
         self.service_account_info = None
         self._publisher = None
@@ -75,6 +76,10 @@ class GcpQueue:
         self.app = app
         self.gcp_auth_key = app.config.get("GCP_AUTH_KEY")
         self.enable_message_ordering = app.config.get("PUB_ENABLE_MESSAGE_ORDERING")
+        if self.enable_message_ordering:
+            self.publisher_options = pubsub_v1.types.PublisherOptions(
+                enable_message_ordering=True
+            )
         if self.gcp_auth_key:
             try:
                 audience = app.config.get(
@@ -106,14 +111,9 @@ class GcpQueue:
         if self._publisher:
             return self._publisher
 
-        publisher_options = None
-        if self.enable_message_ordering:
-            publisher_options = pubsub_v1.types.PublisherOptions(
-                enable_message_ordering=True
-            )
         self._publisher = pubsub_v1.PublisherClient(
             credentials=self.credentials_pub,
-            publisher_options=publisher_options or ()
+            publisher_options=self.publisher_options
         )
         return self._publisher
 
