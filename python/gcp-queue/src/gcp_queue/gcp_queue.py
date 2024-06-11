@@ -108,6 +108,7 @@ class GcpQueue:
     @property
     def publisher(self):
         """Returns the publisher"""
+
         if self._publisher:
             return self._publisher
 
