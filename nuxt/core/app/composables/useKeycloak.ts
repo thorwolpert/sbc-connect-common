@@ -1,7 +1,7 @@
 export const useKeycloak = () => {
   const { $keycloak, $i18n } = useNuxtApp()
 
-  function login (idpHint: IdpHint, redirect?: string) {
+  function login (idpHint: IdpHint, redirect?: string): Promise<void> {
     return $keycloak.login(
       {
         idpHint,
@@ -10,20 +10,20 @@ export const useKeycloak = () => {
     )
   }
 
-  function logout (redirect?: string) {
+  function logout (redirect?: string): Promise<void> {
     return $keycloak.logout({
       redirectUri: redirect ?? `${location.origin}/${$i18n.locale.value}`
     })
   }
 
-  const isAuthenticated = computed(() => {
+  const isAuthenticated = computed<boolean | undefined>(() => {
     if (!$keycloak) {
       return false
     }
     return $keycloak.authenticated
   })
 
-  const kcUser = computed((): KCUser => {
+  const kcUser = computed<KCUser>(() => {
     if ($keycloak && $keycloak.tokenParsed) {
       return {
         firstName: $keycloak.tokenParsed.firstname,
@@ -56,7 +56,6 @@ export const useKeycloak = () => {
     login,
     logout,
     getToken,
-    // getUserProfile,
     isAuthenticated,
     kcUser
   }
