@@ -9,5 +9,6 @@ const { isAuthenticated, login, logout } = useKeycloak()
       <UButton v-else-if="isAuthenticated" label="Logout" @click="logout()" />
       <div> {{ isAuthenticated }} </div>
     </ClientOnly>
+    <ConnectFooter />
   </div>
 </template>

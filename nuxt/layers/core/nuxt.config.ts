@@ -78,5 +78,30 @@ export default defineNuxtConfig({
       keycloakRealm: process.env.NUXT_KEYCLOAK_REALM,
       keycloakClientId: process.env.NUXT_KEYCLOAK_CLIENTID
     }
+  },
+
+  i18n: {
+    locales: [
+      {
+        name: 'English',
+        code: 'en-CA',
+        iso: 'en-CA',
+        dir: 'ltr',
+        file: 'en-CA.ts'
+      },
+      {
+        name: 'Français',
+        code: 'fr-CA',
+        iso: 'fr-CA',
+        dir: 'ltr',
+        file: 'fr-CA.ts'
+      }
+    ],
+    strategy: 'prefix',
+    lazy: true,
+    langDir: 'locales',
+    defaultLocale: 'en-CA',
+    detectBrowserLanguage: false,
+    vueI18n: './i18n.config.ts'
   }
 })
