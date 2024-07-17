@@ -5,4 +5,14 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4
   },
+  imports: {
+    dirs: [
+      'stores',
+      'composables',
+      'enums',
+      'interfaces',
+      'types',
+      'utils'
+    ]
+  },
 })

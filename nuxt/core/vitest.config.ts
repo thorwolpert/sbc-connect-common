@@ -29,7 +29,7 @@ export default defineVitestConfig({
         domEnvironment: 'happy-dom'
         // overrides: {
         //   plugins: [
-        //     mockedKeycloak, 'keycloak'
+        //     '~/tests/unit/mocks/plugins/keycloak'
         //   ]
         // }
         // mock: {
