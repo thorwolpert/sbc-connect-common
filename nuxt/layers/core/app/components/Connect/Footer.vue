@@ -1,8 +1,9 @@
 <script setup lang="ts">
+const localePath = useLocalePath()
 const links = [
   {
     label: 'ConnectFooter.home',
-    to: '/'
+    to: localePath('/')
   },
   {
     label: 'ConnectFooter.disclaimer',

@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "main": "./nuxt.config.ts",
   "scripts": {
-    "dev": "nuxi dev .playground",
+    "dev": "nuxi dev",
     "dev:prepare": "nuxt prepare .playground",
     "generate": "nuxt generate .playground",
     "preview": "nuxt preview .playground",
@@ -17,6 +17,7 @@
     "publish": "node scripts/publish.js"
   },
   "devDependencies": {
+    "@nuxt/image": "^1.7.0",
     "@nuxt/test-utils": "^3.13.1",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/eslint-module": "^4.1.0",

@@ -7,5 +7,13 @@ export default {
     ally: 'Accessibility',
     copyright: 'Copyright',
     bcApp: 'A BC Online Application'
+  },
+  ConnectHeader: {
+    title: 'Service BC Connect',
+    logoBtnLabel: 'Home', // <img> link aria-label
+    navLabel: 'Main Navigation' // <nav> aria-label
+  },
+  ConnectBCGovLogo: {
+    alt: 'Government of British Columbia Logo' // <img> alt
   }
 }

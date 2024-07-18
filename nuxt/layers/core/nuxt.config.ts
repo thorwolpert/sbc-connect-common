@@ -21,7 +21,8 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/i18n',
-    '@vueuse/nuxt'
+    '@vueuse/nuxt',
+    '@nuxt/image'
     // '@nuxt/test-utils/module'
   ],
 
@@ -42,22 +43,10 @@ export default defineNuxtConfig({
 
   alias: {
     BCGovFonts: join(currentDir, './public/fonts/BCSans'),
-    BCGovLogoSmEn: join(
-      currentDir,
-      './public/BCGovLogo/gov_bc_logo_vert_en.png'
-    ),
-    BCGovLogoSmFr: join(
-      currentDir,
-      './public/BCGovLogo/gov_bc_logo_vert_fr.png'
-    ),
-    BCGovLogoLgEn: join(
-      currentDir,
-      './public/BCGovLogo/gov_bc_logo_horiz_en.png'
-    ),
-    BCGovLogoLgFr: join(
-      currentDir,
-      './public/BCGovLogo/gov_bc_logo_horiz_fr.png'
-    )
+    BCGovLogoSmEn: join(currentDir, './public/BCGovLogo/gov_bc_logo_vert_en.png'),
+    BCGovLogoSmFr: join(currentDir, './public/BCGovLogo/gov_bc_logo_vert_fr.png'),
+    BCGovLogoLgEn: join(currentDir, './public/BCGovLogo/gov_bc_logo_horiz_en.png'),
+    BCGovLogoLgFr: join(currentDir, './public/BCGovLogo/gov_bc_logo_horiz_fr.png')
   },
 
   colorMode: {
