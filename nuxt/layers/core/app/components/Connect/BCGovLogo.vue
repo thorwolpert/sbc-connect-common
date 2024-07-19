@@ -1,5 +1,6 @@
 <script setup lang="ts">
-// @ts-ignore
+// must explicitly import or will fail when publishing layer // TODO: find better way to handle image aliases
+// @ts-ignore - Cannot find module 'BCGovLogoLgFr' or its corresponding type declarations.ts(2307)
 import frLargeLogo from 'BCGovLogoLgFr'
 // @ts-ignore
 import frSmallLogo from 'BCGovLogoSmFr'
