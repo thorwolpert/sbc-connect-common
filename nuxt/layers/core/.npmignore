@@ -4,3 +4,4 @@ scripts
 .eslintrc
 app/tests
 vitest.config.ts
+app/pages/layer-dev-playground.vue
