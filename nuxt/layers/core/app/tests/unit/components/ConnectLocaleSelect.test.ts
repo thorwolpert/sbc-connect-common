@@ -2,7 +2,8 @@ import { vi, describe, expect, it } from 'vitest'
 import { mountSuspended, renderSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime'
 import { fireEvent, screen } from '@testing-library/vue'
 import { enI18n } from '../mocks/i18n'
-import { ConnectLocaleSelect } from '#components'
+// eslint-disable-next-line
+import { ConnectLocaleSelect } from '#components' // eslint cant find the component but test passes
 // import en from '~/locales/en-CA'
 
 const setLocaleMock = vi.fn()

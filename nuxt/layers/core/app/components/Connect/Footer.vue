@@ -31,6 +31,7 @@ const links = [
 <template>
   <footer
     id="connect-main-footer"
+    data-testid="connect-main-footer"
     class="border-t-2 border-bcGovColor-navDivider bg-bcGovColor-footer p-2 dark:border-t dark:bg-bcGovColor-darkGray"
   >
     <div class="mx-auto flex max-w-bcGovLg items-center justify-between">
