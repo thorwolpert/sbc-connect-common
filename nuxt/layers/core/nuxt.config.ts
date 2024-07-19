@@ -65,7 +65,8 @@ export default defineNuxtConfig({
       // Keys within public, will be also exposed to the client-side
       keycloakAuthUrl: process.env.NUXT_KEYCLOAK_AUTH_URL,
       keycloakRealm: process.env.NUXT_KEYCLOAK_REALM,
-      keycloakClientId: process.env.NUXT_KEYCLOAK_CLIENTID
+      keycloakClientId: process.env.NUXT_KEYCLOAK_CLIENTID,
+      authWebURL: process.env.NUXT_AUTH_WEB_URL
     }
   },
 
