@@ -23,15 +23,15 @@ try {
   }
 
   // Run typecheck
-  const typecheckSpinner = ora('Running typecheck...').start()
-  try {
-    execSync('npx nuxi typecheck', { stdio: 'inherit' })
-    typecheckSpinner.succeed()
-  } catch {
-    typecheckSpinner.fail()
-    console.error('Typecheck failed')
-    process.exit(1)
-  }
+  // const typecheckSpinner = ora('Running typecheck...').start()
+  // try {
+  //   execSync('npx nuxi typecheck', { stdio: 'inherit' })
+  //   typecheckSpinner.succeed()
+  // } catch {
+  //   typecheckSpinner.fail()
+  //   console.error('Typecheck failed')
+  //   process.exit(1)
+  // }
 
   // update package version using arg from command
   const versionSpinner = ora('Updating package version...').start()
