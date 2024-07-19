@@ -1,6 +1,25 @@
 export default {
+  btn: {
+    bcRegHome: 'Accueil des Registres de la CB',
+    createAccount: 'Créer un Compte',
+    editProfile: 'Editer le Profil',
+    logout: 'Se déconnecter',
+    login: 'Se connecter',
+    accountInfo: 'Infos Compte',
+    teamMembers: 'Membres Équipe',
+    transactions: 'Transactions',
+    notifications: 'Notifications',
+    accountOptionsMenu: 'Menu Options du Compte',
+    whatsNew: 'Quoi de Neuf'
+  },
   label: {
-    bcRegOLServices: 'BC Registries and Online Services'
+    accountSettings: 'Paramètres Compte',
+    bcRegOLServices: 'Registres et Services en ligne de la CB',
+    switchAccount: 'Changer de Compte',
+    selectLoginMethod: 'Sélectionnez la Méthode de Connexion',
+    bcsc: 'BC Services Card',
+    bceid: 'BCeID',
+    idir: 'IDIR'
   },
   ConnectFooter: {
     navLabel: 'Liens utiles', // <nav> aria-label

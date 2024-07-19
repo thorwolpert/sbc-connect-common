@@ -2,6 +2,7 @@
 import { parseSpecialChars } from '~/utils/parseSpecialChars'
 const { loggedOutUserOptions, loggedInUserOptions, createAccountUrl } = useConnectNav()
 const { isAuthenticated, kcUser } = useKeycloak()
+const localePath = useLocalePath()
 // const account = useAccountStore()
 </script>
 <template>
@@ -14,10 +15,14 @@ const { isAuthenticated, kcUser } = useKeycloak()
       class="m-auto flex w-full max-w-bcGovLg items-center justify-between"
       :aria-label="$t('ConnectHeader.navLabel')"
     >
-      <div class="flex items-center gap-4">
+      <NuxtLink
+        :to="localePath('/')"
+        class="flex items-center gap-4 rounded-md px-2 focus:outline-none focus:ring-2 focus:ring-white"
+        :aria-label="$t('btn.bcRegHome')"
+      >
         <ConnectBCGovLogo />
         <span class="text-base font-semibold text-white lg:text-lg"> {{ $t('label.bcRegOLServices') }} </span>
-      </div>
+      </NuxtLink>
       <!-- authenticated options -->
       <div
         v-if="isAuthenticated"
@@ -43,7 +48,7 @@ const { isAuthenticated, kcUser } = useKeycloak()
               class="hidden lg:flex"
               variant="header"
               color="white"
-              label="Notifications"
+              :label="$t('btn.notifications')"
               icon="i-mdi-caret-down"
               trailing
             >
@@ -51,7 +56,7 @@ const { isAuthenticated, kcUser } = useKeycloak()
                 <UIcon name="i-mdi-bell-outline" class="size-6 shrink-0" />
               </template>
             </UButton>
-            <UButton class="lg:hidden" variant="header" color="white" aria-label="Notifications" icon="i-mdi-bell-outline" />
+            <UButton class="lg:hidden" variant="header" color="white" :aria-label="$t('btn.notifications')" icon="i-mdi-bell-outline" />
           </UDropdown>
           <!-- account options dropdown -->
           <UDropdown
@@ -76,7 +81,7 @@ const { isAuthenticated, kcUser } = useKeycloak()
               class="hidden lg:flex"
               color="white"
               variant="header"
-              :aria-label="$t('btn.accountOptions')"
+              :aria-label="$t('btn.accountOptionsMenu')"
               icon="i-mdi-caret-down"
               trailing
             >
@@ -90,7 +95,7 @@ const { isAuthenticated, kcUser } = useKeycloak()
               class="lg:hidden"
               color="white"
               variant="header"
-              :aria-label="$t('btn.accountOptions')"
+              :aria-label="$t('btn.accountOptionsMenu')"
             >
               <UAvatar
                 :alt="parseSpecialChars(kcUser.fullName, 'U')[0]!.toUpperCase()"
@@ -127,7 +132,10 @@ const { isAuthenticated, kcUser } = useKeycloak()
       <div v-else class="flex gap-1">
         <!-- whats new slideover -->
         <UChip color="red" position="top-left" inset>
-          <UButton variant="header" color="white" label="Whats New" />
+          <UButton class="lg:hidden" variant="header" color="white" :aria-label="$t('btn.whatsNew')">
+            <UIcon name="i-mdi-new-box" class="size-6 shrink-0" />
+          </UButton>
+          <UButton class="hidden lg:flex" variant="header" color="white" :label="$t('btn.whatsNew')" />
         </UChip>
         <!-- login options dropdown -->
         <UDropdown
@@ -144,17 +152,24 @@ const { isAuthenticated, kcUser } = useKeycloak()
             }
           }"
         >
-          <UButton variant="header" color="white" label="Log in" icon="i-mdi-caret-down" trailing />
+          <UButton
+            variant="header"
+            color="white"
+            :label="$t('btn.login')"
+            :aria-label="$t('label.selectLoginMethod')"
+            icon="i-mdi-caret-down"
+            trailing
+          />
 
           <template #method>
-            <span class="font-semibold text-bcGovColor-darkGray"> Select login method </span>
+            <span class="font-semibold text-bcGovColor-darkGray"> {{ $t('label.selectLoginMethod') }} </span>
           </template>
         </UDropdown>
         <!-- create account button -->
         <UButton
           variant="header"
           color="white"
-          label="Create Account"
+          :label="$t('btn.createAccount')"
           :to="createAccountUrl()"
         />
         <!-- locale select dropdown -->

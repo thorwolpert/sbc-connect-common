@@ -1,16 +1,25 @@
 export default {
   btn: {
+    bcRegHome: 'BC Registries Home',
     createAccount: 'Create Account',
     editProfile: 'Edit Profile',
     logout: 'Log out',
+    login: 'Log in',
     accountInfo: 'Account Info',
     teamMembers: 'Team Members',
-    transactions: 'Transactions'
+    transactions: 'Transactions',
+    notifications: 'Notifications',
+    accountOptionsMenu: 'Account Options Menu',
+    whatsNew: "What's New"
   },
   label: {
     accountSettings: 'Account Settings',
     bcRegOLServices: 'BC Registries and Online Services',
-    switchAccount: 'Switch Account'
+    switchAccount: 'Switch Account',
+    selectLoginMethod: 'Select Login Method',
+    bcsc: 'BC Services Card',
+    bceid: 'BCeID',
+    idir: 'IDIR'
   },
   ConnectFooter: {
     navLabel: 'Useful Links', // <nav> aria-label

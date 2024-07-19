@@ -102,17 +102,17 @@ export function useConnectNav () {
       ],
       [
         {
-          label: 'Log in bcsc',
+          label: t('label.bcsc'),
           icon: 'i-mdi-account-card-details-outline',
           click: () => login(IdpHint.BCSC)
         },
         {
-          label: 'Log in bceid',
+          label: t('label.bceid'),
           icon: 'i-mdi-two-factor-authentication',
           click: () => login(IdpHint.BCEID)
         },
         {
-          label: 'Log in idir',
+          label: t('label.idir'),
           icon: 'i-mdi-account-group-outline',
           click: () => login(IdpHint.IDIR)
         }
