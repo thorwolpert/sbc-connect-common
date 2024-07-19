@@ -8,7 +8,7 @@ defineProps({
 <template>
   <div class="flex items-center gap-1">
     <UAvatar
-      :alt="username[0] ? username[0].toUpperCase() : 'U'"
+      :alt="username[0] ? username[0].toLocaleUpperCase($i18n.locale) : 'U'"
       size="sm"
       :ui="{
         background: 'bg-bcGovBlue-300 dark:bg-[#E0E7ED]',
@@ -22,13 +22,13 @@ defineProps({
         class="line-clamp-1 max-w-72 overflow-hidden text-ellipsis text-sm"
         :class="{'text-white': theme === 'header', 'text-bcGovColor-darkGray': theme === 'dropdown'}"
       >
-        {{ username.toUpperCase() }}
+        {{ username.toLocaleUpperCase($i18n.locale) }}
       </span>
       <span
         class="line-clamp-1 max-w-72 overflow-hidden text-ellipsis text-xs"
         :class="{'text-gray-300': theme === 'header', 'text-bcGovColor-midGray': theme === 'dropdown'}"
       >
-        {{ accountName.toUpperCase() }}
+        {{ accountName.toLocaleUpperCase($i18n.locale) }}
       </span>
     </div>
   </div>
