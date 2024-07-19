@@ -19,13 +19,13 @@ defineProps({
     />
     <div class="mx-2 flex flex-col text-left font-normal tracking-wide">
       <span
-        class="line-clamp-1 font-semibold"
+        class="line-clamp-1 max-w-72 overflow-hidden text-ellipsis text-sm"
         :class="{'text-white': theme === 'header', 'text-bcGovColor-darkGray': theme === 'dropdown'}"
       >
         {{ username.toUpperCase() }}
       </span>
       <span
-        class="line-clamp-1 text-sm"
+        class="line-clamp-1 max-w-72 overflow-hidden text-ellipsis text-xs"
         :class="{'text-gray-300': theme === 'header', 'text-bcGovColor-midGray': theme === 'dropdown'}"
       >
         {{ accountName.toUpperCase() }}

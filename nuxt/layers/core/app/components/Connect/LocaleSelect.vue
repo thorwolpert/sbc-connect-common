@@ -30,4 +30,3 @@ const items = computed<DropdownItem[][]>(() => {
     />
   </UDropdown>
 </template>
-<!-- ADD LOCALE SELECT TESTS, THEN KEEP WORKING ON AUTHENTICATED HEADER OPTIONS -->

@@ -1,4 +1,7 @@
 export default {
+  label: {
+    bcRegOLServices: 'BC Registries and Online Services'
+  },
   ConnectFooter: {
     navLabel: 'Liens utiles', // <nav> aria-label
     home: 'Accueil',
@@ -15,5 +18,9 @@ export default {
   },
   ConnectBCGovLogo: {
     alt: 'Logo du gouvernement de la Colombie-Britannique' // <img> alt
+  },
+  ConnectLocaleSelect: {
+    // aria-label
+    label: 'Sélectionnez une langue, langue courante: Français'
   }
 }

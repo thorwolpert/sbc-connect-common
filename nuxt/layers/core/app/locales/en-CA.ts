@@ -1,4 +1,17 @@
 export default {
+  btn: {
+    createAccount: 'Create Account',
+    editProfile: 'Edit Profile',
+    logout: 'Log out',
+    accountInfo: 'Account Info',
+    teamMembers: 'Team Members',
+    transactions: 'Transactions'
+  },
+  label: {
+    accountSettings: 'Account Settings',
+    bcRegOLServices: 'BC Registries and Online Services',
+    switchAccount: 'Switch Account'
+  },
   ConnectFooter: {
     navLabel: 'Useful Links', // <nav> aria-label
     home: 'Home',
@@ -15,5 +28,9 @@ export default {
   },
   ConnectBCGovLogo: {
     alt: 'Government of British Columbia Logo' // <img> alt
+  },
+  ConnectLocaleSelect: {
+    // aria-label
+    label: 'Select a Language, current language: English'
   }
 }
