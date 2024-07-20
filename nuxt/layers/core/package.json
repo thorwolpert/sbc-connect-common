@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "main": "./nuxt.config.ts",
   "scripts": {
-    "dev": "nuxi dev .playground",
-    "dev:prepare": "nuxt prepare .playground",
+    "dev": "nuxi dev --port 3000",
+    "dev:prepare": "nuxt prepare",
     "generate": "nuxt generate .playground",
     "preview": "nuxt preview .playground",
     "postinstall": "nuxt prepare",
@@ -17,6 +17,7 @@
     "publish": "node scripts/publish.js"
   },
   "devDependencies": {
+    "@nuxt/image": "^1.7.0",
     "@nuxt/test-utils": "^3.13.1",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/eslint-module": "^4.1.0",

@@ -21,7 +21,8 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/i18n',
-    '@vueuse/nuxt'
+    '@vueuse/nuxt',
+    '@nuxt/image'
     // '@nuxt/test-utils/module'
   ],
 
@@ -42,22 +43,10 @@ export default defineNuxtConfig({
 
   alias: {
     BCGovFonts: join(currentDir, './public/fonts/BCSans'),
-    BCGovLogoSmEn: join(
-      currentDir,
-      './public/BCGovLogo/gov_bc_logo_vert_en.png'
-    ),
-    BCGovLogoSmFr: join(
-      currentDir,
-      './public/BCGovLogo/gov_bc_logo_vert_fr.png'
-    ),
-    BCGovLogoLgEn: join(
-      currentDir,
-      './public/BCGovLogo/gov_bc_logo_horiz_en.png'
-    ),
-    BCGovLogoLgFr: join(
-      currentDir,
-      './public/BCGovLogo/gov_bc_logo_horiz_fr.png'
-    )
+    BCGovLogoSmEn: join(currentDir, './public/BCGovLogo/gov_bc_logo_vert_en.png'),
+    BCGovLogoSmFr: join(currentDir, './public/BCGovLogo/gov_bc_logo_vert_fr.png'),
+    BCGovLogoLgEn: join(currentDir, './public/BCGovLogo/gov_bc_logo_horiz_en.png'),
+    BCGovLogoLgFr: join(currentDir, './public/BCGovLogo/gov_bc_logo_horiz_fr.png')
   },
 
   colorMode: {
@@ -76,7 +65,35 @@ export default defineNuxtConfig({
       // Keys within public, will be also exposed to the client-side
       keycloakAuthUrl: process.env.NUXT_KEYCLOAK_AUTH_URL,
       keycloakRealm: process.env.NUXT_KEYCLOAK_REALM,
-      keycloakClientId: process.env.NUXT_KEYCLOAK_CLIENTID
+      keycloakClientId: process.env.NUXT_KEYCLOAK_CLIENTID,
+      authWebURL: process.env.NUXT_AUTH_WEB_URL
+      // registryHomeURL: process.env.NUXT_REGISTRY_HOME_URL
+      // appBaseUrl: process.env.NUXT_APP_BASE_URL
     }
+  },
+
+  i18n: {
+    locales: [
+      {
+        name: 'English',
+        code: 'en-CA',
+        iso: 'en-CA',
+        dir: 'ltr',
+        file: 'en-CA.ts'
+      },
+      {
+        name: 'Français',
+        code: 'fr-CA',
+        iso: 'fr-CA',
+        dir: 'ltr',
+        file: 'fr-CA.ts'
+      }
+    ],
+    strategy: 'prefix',
+    lazy: true,
+    langDir: 'locales',
+    defaultLocale: 'en-CA',
+    detectBrowserLanguage: false,
+    vueI18n: './i18n.config.ts'
   }
 })

@@ -2,19 +2,14 @@
 const { isAuthenticated, login, logout } = useKeycloak()
 </script>
 <template>
-  <div class="mx-auto flex flex-col bg-gray-500">
-    <ConnectHeader />
-    <img
-      class="h-[60px] scale-125"
-      src="BCGovLogoLgEn"
-      alt="$t('ConnectBCGovLogo.alt')"
-    >
-    <div> hello </div>
+  <div class="flex flex-col gap-8 border border-black px-2 py-8">
+    <h1 class="text-3xl font-semibold text-bcGovColor-darkGray">
+      Testing
+    </h1>
     <ClientOnly>
       <UButton v-if="!isAuthenticated" label="Login" @click="login(IdpHint.BCSC)" />
       <UButton v-else-if="isAuthenticated" label="Logout" @click="logout()" />
       <div> {{ isAuthenticated }} </div>
     </ClientOnly>
-    <ConnectFooter />
   </div>
 </template>
