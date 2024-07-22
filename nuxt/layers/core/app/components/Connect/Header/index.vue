@@ -64,7 +64,7 @@ const accountStore = useConnectAccountStore()
             :items="loggedInUserOptions"
             :ui="{
               width: '',
-              height: '',
+              height: 'max-h-[75vh]',
               item: {
                 base: 'group flex items-center gap-4 w-full',
                 disabled: 'cursor-default opacity-100 font-semibold',

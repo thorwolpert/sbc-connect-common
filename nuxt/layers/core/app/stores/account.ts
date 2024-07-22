@@ -85,16 +85,21 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
     }
   }
 
+  function $reset () {
+    currentAccount.value = {} as Account
+    userAccounts.value = []
+  }
+
   return {
     currentAccount,
     currentAccountName,
     userAccounts,
     // updateAuthUserInfo,
     setAccountInfo,
-    switchCurrentAccount
+    getUserAccounts,
+    switchCurrentAccount,
+    $reset
   }
 },
 { persist: true } // persist in session storage
 )
-
-// ADD ACCOUNT OPTIONS TO Headers, SPLIT HEADER INTO SMALLER COMPONENTS
