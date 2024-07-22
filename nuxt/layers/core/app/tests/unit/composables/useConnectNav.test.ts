@@ -320,4 +320,53 @@ describe('useConnectNav', () => {
       }
     })
   })
+
+  describe('loggedOutUserOptionsMobile', () => {
+    it('should create full options for mibile view', () => {
+      mockIsAuthenticated.value = false
+      const connectNav = useConnectNav()
+      const options = connectNav.loggedOutUserOptionsMobile.value
+      expect(options).toEqual([
+        [
+          {
+            disabled: true,
+            label: 'n/a',
+            slot: 'method'
+          }
+        ],
+        [
+          {
+            click: expect.any(Function),
+            icon: 'i-mdi-account-card-details-outline',
+            label: 'label.bcsc'
+          },
+          {
+            click: expect.any(Function),
+            icon: 'i-mdi-two-factor-authentication',
+            label: 'label.bceid'
+          },
+          {
+            click: expect.any(Function),
+            icon: 'i-mdi-account-group-outline',
+            label: 'label.idir'
+          }
+        ],
+        [
+          {
+            click: expect.any(Function),
+            icon: 'i-mdi-new-box',
+            label: 'btn.whatsNew',
+            slot: 'whats-new'
+          }
+        ],
+        [
+          {
+            icon: 'i-mdi-plus',
+            label: 'btn.createAccount',
+            to: 'https://auth.example.com/choose-authentication-method'
+          }
+        ]
+      ])
+    })
+  })
 })
