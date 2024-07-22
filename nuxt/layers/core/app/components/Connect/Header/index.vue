@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { parseSpecialChars } from '~/utils/parseSpecialChars'
-const { loggedOutUserOptions, loggedInUserOptions, createAccountUrl } = useConnectNav()
+const { loggedOutUserOptions, loggedOutUserOptionsMobile, loggedInUserOptions, createAccountUrl } = useConnectNav()
 const { isAuthenticated, kcUser } = useKeycloak()
 const localePath = useLocalePath()
 const accountStore = useConnectAccountStore()
@@ -17,7 +17,7 @@ const accountStore = useConnectAccountStore()
     >
       <NuxtLink
         :to="localePath('/')"
-        class="flex items-center gap-4 rounded-md px-2 focus:outline-none focus:ring-2 focus:ring-white"
+        class="flex items-center gap-1 rounded-md px-2 focus:outline-none focus:ring-2 focus:ring-white"
         :aria-label="$t('btn.bcRegHome')"
       >
         <ConnectBCGovLogo />
@@ -134,15 +134,13 @@ const accountStore = useConnectAccountStore()
       <!-- unauthenticated options -->
       <div v-else class="flex gap-1">
         <!-- whats new slideover -->
-        <UChip color="red" position="top-left" inset>
-          <UButton class="lg:hidden" variant="header" color="white" :aria-label="$t('btn.whatsNew')">
-            <UIcon name="i-mdi-new-box" class="size-6 shrink-0" />
-          </UButton>
+        <UChip color="red" position="top-left" inset class="hidden lg:flex">
           <UButton class="hidden lg:flex" variant="header" color="white" :label="$t('btn.whatsNew')" />
         </UChip>
         <ClientOnly>
           <!-- login options dropdown -->
           <UDropdown
+            class="hidden lg:flex"
             :items="loggedOutUserOptions"
             :ui="{
               item: {
@@ -172,11 +170,46 @@ const accountStore = useConnectAccountStore()
         </ClientOnly>
         <!-- create account button -->
         <UButton
+          class="hidden lg:flex"
           variant="header"
           color="white"
           :label="$t('btn.createAccount')"
           :to="createAccountUrl()"
         />
+        <ClientOnly>
+          <!-- logged out main mobile menu -->
+          <UDropdown
+            class="lg:hidden"
+            :items="loggedOutUserOptionsMobile"
+            :ui="{
+              item: {
+                base: 'group flex items-center gap-4 w-full',
+                disabled: 'cursor-default text-left opacity-100',
+                icon: {
+                  base: 'flex-shrink-0 size-6',
+                  active: 'text-gray-500 dark:text-gray-400',
+                  inactive: 'text-bcGovColor-midGray',
+                },
+              }
+            }"
+          >
+            <UButton
+              variant="header"
+              color="white"
+              :aria-label="$t('btn.mainMenu')"
+              icon="i-mdi-menu"
+              trailing
+            />
+            <template #method>
+              <span class="font-semibold text-bcGovColor-darkGray"> {{ $t('label.selectLoginMethod') }} </span>
+            </template>
+            <template #whats-new="{ item }">
+              <UIcon :name="item.icon" class="size-6 shrink-0 text-bcGovColor-midGray" />
+              <span class="truncate">{{ item.label }}</span>
+              <span class="size-2 rounded-full bg-red-500" />
+            </template>
+          </UDropdown>
+        </ClientOnly>
         <!-- locale select dropdown -->
         <ConnectLocaleSelect />
       </div>

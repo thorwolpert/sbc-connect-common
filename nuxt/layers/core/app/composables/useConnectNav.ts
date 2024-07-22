@@ -129,9 +129,16 @@ export function useConnectNav () {
     ]
   ])
 
+  const loggedOutUserOptionsMobile = computed<DropdownItem[][]>(() => [
+    ...loggedOutUserOptions.value,
+    [{ label: t('btn.whatsNew'), slot: 'whats-new', icon: 'i-mdi-new-box', click: () => console.log('whats new clicked') }],
+    [{ label: t('btn.createAccount'), icon: 'i-mdi-plus', to: createAccountUrl() }]
+  ])
+
   return {
     loggedInUserOptions,
     loggedOutUserOptions,
+    loggedOutUserOptionsMobile,
     createAccountUrl
   }
 }

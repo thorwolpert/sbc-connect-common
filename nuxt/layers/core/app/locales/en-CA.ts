@@ -10,7 +10,8 @@ export default {
     transactions: 'Transactions',
     notifications: 'Notifications',
     accountOptionsMenu: 'Account Options Menu',
-    whatsNew: "What's New"
+    whatsNew: "What's New",
+    mainMenu: 'Main menu'
   },
   label: {
     accountSettings: 'Account Settings',
