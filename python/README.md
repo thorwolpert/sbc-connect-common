@@ -2,6 +2,8 @@
 
 ## Libraries
 
+[gcp queue](./gcp-queue)
+[sql versioning](./sql-versioning)
 [structured logging](./structured-logging)
 
 

@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "sql-versioning"
+version = "0.1.0"
+description = ""
+authors = ["thorwolpert <thor@wolpert.ca>"]
+readme = "README.md"
+packages = [{include = "sql_versioning", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.1"
+black = "^24.4.2"
+zimports = "^0.6.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
