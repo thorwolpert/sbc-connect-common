@@ -102,34 +102,32 @@ export function useConnectNav () {
     createAccountOptions.value
   ])
 
-  const loggedOutUserOptions = computed<DropdownItem[][]>(() => {
-    return [
-      [
-        {
-          label: 'n/a',
-          slot: 'method',
-          disabled: true
-        }
-      ],
-      [
-        {
-          label: t('label.bcsc'),
-          icon: 'i-mdi-account-card-details-outline',
-          click: () => login(IdpHint.BCSC)
-        },
-        {
-          label: t('label.bceid'),
-          icon: 'i-mdi-two-factor-authentication',
-          click: () => login(IdpHint.BCEID)
-        },
-        {
-          label: t('label.idir'),
-          icon: 'i-mdi-account-group-outline',
-          click: () => login(IdpHint.IDIR)
-        }
-      ]
+  const loggedOutUserOptions = computed<DropdownItem[][]>(() => [
+    [
+      {
+        label: 'n/a',
+        slot: 'method',
+        disabled: true
+      }
+    ],
+    [
+      {
+        label: t('label.bcsc'),
+        icon: 'i-mdi-account-card-details-outline',
+        click: () => login(IdpHint.BCSC)
+      },
+      {
+        label: t('label.bceid'),
+        icon: 'i-mdi-two-factor-authentication',
+        click: () => login(IdpHint.BCEID)
+      },
+      {
+        label: t('label.idir'),
+        icon: 'i-mdi-account-group-outline',
+        click: () => login(IdpHint.IDIR)
+      }
     ]
-  })
+  ])
 
   return {
     loggedInUserOptions,
