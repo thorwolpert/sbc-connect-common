@@ -3,21 +3,22 @@ import type { DropdownItem } from '#ui/types'
 // handle navigation items and functionality
 export function useConnectNav () {
   const config = useRuntimeConfig()
+  const authWebUrl = config.public.authWebURL
   // const localePath = useLocalePath()
   const { t } = useI18n()
   const { login, logout, isAuthenticated, kcUser } = useKeycloak()
-  // const accountStore = useAccountStore()
+  const accountStore = useConnectAccountStore()
 
-  /** redirect to the correct creation screen based on auth state */
-  function createAccountUrl () {
+  /** return the correct account creation link based on auth state */
+  function createAccountUrl (): string {
     if (isAuthenticated.value) {
-      return config.public.authWebURL + 'setup-account'
+      return authWebUrl + 'setup-account'
     } else {
-      return config.public.authWebURL + 'choose-authentication-method'
+      return authWebUrl + 'choose-authentication-method'
     }
   }
 
-  const basicAccountOptions = computed(() => {
+  const basicAccountOptions = computed<DropdownItem[]>(() => {
     const options: DropdownItem[] = [
       {
         label: 'n/a',
@@ -29,7 +30,7 @@ export function useConnectNav () {
       options.push({
         label: t('btn.editProfile'),
         icon: 'i-mdi-account-outline',
-        to: config.public.authWebURL + 'userprofile'
+        to: authWebUrl + 'userprofile'
       })
     }
     options.push({
@@ -40,38 +41,52 @@ export function useConnectNav () {
     return options
   })
 
-  const accountSettingsOptions = computed(() => {
+  const accountSettingsOptions = computed<DropdownItem[]>(() => {
     const options: DropdownItem[] = [
-      { label: 'n/a', slot: 'settings', disabled: true },
-      { label: t('btn.accountInfo'), icon: 'i-mdi-information-outline', to: config.public.authWebURL + 'account/' }, // config.public.authWebURL + `account/${account.currentAccount.id}/settings/account-info`
-      { label: t('btn.teamMembers'), icon: 'i-mdi-account-group-outline', to: config.public.authWebURL + 'account/' } // config.public.authWebURL + `account/${account.currentAccount.id}/settings/team-members`
+      {
+        label: 'n/a',
+        slot: 'settings',
+        disabled: true
+      },
+      {
+        label: t('btn.accountInfo'),
+        icon: 'i-mdi-information-outline',
+        to: authWebUrl + `account/${accountStore.currentAccount.id}/settings/account-info`
+      },
+      {
+        label: t('btn.teamMembers'),
+        icon: 'i-mdi-account-group-outline',
+        to: authWebUrl + `account/${accountStore.currentAccount.id}/settings/team-members`
+      }
     ]
-    // if ([AccountTypeE.PREMIUM, AccountTypeE.SBC_STAFF, AccountTypeE.STAFF].includes(currentAccount.value.accountType)) {
-    //   options.push({
-    //     label: t('btn.transactions'),
-    //     icon: 'i-mdi-file-document-outline',
-    //     to: config.public.authWebURL + `account/` // config.public.authWebURL + `account/${account.currentAccount.id}/settings/transactions`
-    //   })
-    // }
+    if ([AccountType.PREMIUM, AccountType.SBC_STAFF, AccountType.STAFF].includes(accountStore.currentAccount.accountType)) {
+      options.push({
+        label: t('btn.transactions'),
+        icon: 'i-mdi-file-document-outline',
+        to: authWebUrl + `account/${accountStore.currentAccount.id}/settings/transactions`
+      })
+    }
     return options
   })
 
-  // will add account options in new pr
-  // const switchAccountOptions = computed(() => {
-  //   const options: HeaderMenuItemI[] = []
-  //   for (const i in userAccounts.value) {
-  //     const isActive = currentAccount.value.id === userAccounts.value[i].id
-  //     // add active account stuff to menu list item
-  //     options.push({
-  //       label: userAccounts.value[i].label,
-  //       action: isActive ? undefined : switchAccount,
-  //       args: userAccounts.value[i].id,
-  //       icon: isActive ? 'i-mdi-check' : '',
-  //       setActive: isActive
-  //     })
-  //   }
-  //   return options
-  // })
+  const switchAccountOptions = computed<DropdownItem[]>(() => {
+    const options: DropdownItem[] = [
+      { label: 'n/a', slot: 'accounts', disabled: true }
+    ]
+    accountStore.userAccounts.forEach((account) => {
+      const isActive = accountStore.currentAccount.id === account.id
+      options.push({
+        label: account.label,
+        click: () => {
+          if (!isActive && account.id) {
+            accountStore.switchCurrentAccount(account.id)
+          }
+        },
+        icon: isActive ? 'i-mdi-check' : ''
+      })
+    })
+    return options
+  })
 
   const createAccountOptions = computed<DropdownItem[]>(() => {
     if ([LoginSource.BCROS, LoginSource.IDIR].includes(kcUser?.value.loginSource)) {
@@ -80,16 +95,12 @@ export function useConnectNav () {
     return [{ label: t('btn.createAccount'), icon: 'i-mdi-plus', to: createAccountUrl() }]
   })
 
-  const loggedInUserOptions = computed<DropdownItem[][]>(() => {
-    const fullOptions: DropdownItem[][] = []
-
-    fullOptions.push(basicAccountOptions.value)
-    fullOptions.push(accountSettingsOptions.value)
-    // fullOptions.push(switchAccountOptions.value) need to add in account store
-    fullOptions.push(createAccountOptions.value)
-
-    return fullOptions
-  })
+  const loggedInUserOptions = computed<DropdownItem[][]>(() => [
+    basicAccountOptions.value,
+    accountSettingsOptions.value,
+    switchAccountOptions.value,
+    createAccountOptions.value
+  ])
 
   const loggedOutUserOptions = computed<DropdownItem[][]>(() => {
     return [
