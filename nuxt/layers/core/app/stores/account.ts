@@ -1,3 +1,4 @@
+// TODO: come up with and add error handling solution
 /** Manages connect account data */
 export const useConnectAccountStore = defineStore('nuxt-core-connect-account-store', () => {
   const apiURL = useRuntimeConfig().public.authApiURL
@@ -7,7 +8,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
   const userAccounts = ref<Account[]>([])
   const currentAccountName = computed<string>(() => currentAccount.value?.label || '')
 
-  // Do we need this ?
+  // TODO: implement
   /** Get user information from AUTH */
   // async function getAuthUserProfile (identifier: string): Promise<KCUser> {
   //   const token = await getToken()
@@ -18,7 +19,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
   //   })
   // }
 
-  // Do we need this?
+  // TODO: implement
   /** Update user information in AUTH with current token info */
   // async function updateAuthUserInfo (): Promise<void | KCUser> {
   //   const token = await getToken()
@@ -31,7 +32,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
   //   })
   // }
 
-  // Do we need this?
+  // TODO: implement
   /** Set user name information */
   // async function setUserName () {
   //   if (kcUser.value?.loginSource === LoginSource.BCEID) {
@@ -66,14 +67,17 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
   }
 
   /** Set the user account list and current account */
-  // async function setAccountInfo (currentAccountId?: string) {
   async function setAccountInfo () {
-    if (kcUser.value?.keycloakGuid) {
-      const response = await getUserAccounts(kcUser.value?.keycloakGuid)
-      if (response && response[0] !== undefined) {
-        userAccounts.value = response
-        currentAccount.value = response[0]
+    try {
+      if (kcUser.value?.keycloakGuid) {
+        const response = await getUserAccounts(kcUser.value?.keycloakGuid)
+        if (response && response[0] !== undefined) {
+          userAccounts.value = response
+          currentAccount.value = response[0]
+        }
       }
+    } catch (e) {
+      console.log(e)
     }
   }
 
