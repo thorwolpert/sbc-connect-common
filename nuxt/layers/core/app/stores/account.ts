@@ -111,6 +111,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
   function $reset () {
     currentAccount.value = {} as Account
     userAccounts.value = []
+    pendingApprovalCount.value = 0
   }
 
   return {
