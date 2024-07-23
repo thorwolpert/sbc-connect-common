@@ -7,6 +7,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
   const currentAccount = ref<Account>({} as Account)
   const userAccounts = ref<Account[]>([])
   const currentAccountName = computed<string>(() => currentAccount.value?.label || '')
+  const pendingApprovalCount = ref<number>(0)
 
   // TODO: implement
   /** Get user information from AUTH */
@@ -89,6 +90,24 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
     }
   }
 
+  async function getPendingApprovalCount (accountId: number, keycloakGuid: string): Promise<void> { // Promise<AxiosResponse<Count>>
+    try {
+      const token = await getToken()
+      const response = await $fetch<{ count: number }>(`${apiURL}/users/${keycloakGuid}/org/${accountId}/notifications`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+
+      if (response) {
+        pendingApprovalCount.value = response.count
+      }
+    } catch (e) {
+      console.error('Error retrieving pending approvals.')
+      console.error(e)
+    }
+  }
+
   function $reset () {
     currentAccount.value = {} as Account
     userAccounts.value = []
@@ -98,10 +117,12 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
     currentAccount,
     currentAccountName,
     userAccounts,
+    pendingApprovalCount,
     // updateAuthUserInfo,
     setAccountInfo,
     getUserAccounts,
     switchCurrentAccount,
+    getPendingApprovalCount,
     $reset
   }
 },
