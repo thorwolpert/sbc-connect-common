@@ -10,7 +10,8 @@ export default {
     transactions: 'Transactions',
     notifications: 'Notifications',
     accountOptionsMenu: 'Menu Options du Compte',
-    whatsNew: 'Quoi de Neuf'
+    whatsNew: 'Quoi de Neuf',
+    mainMenu: 'Menu principal'
   },
   label: {
     accountSettings: 'Paramètres Compte',

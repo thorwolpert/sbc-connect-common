@@ -1,3 +1,4 @@
+import { resetPiniaStores } from '~/utils/resetPiniaStores'
 export const useKeycloak = () => {
   const { $keycloak, $i18n } = useNuxtApp()
 
@@ -22,6 +23,7 @@ export const useKeycloak = () => {
    * @returns A promise that resolves when logout is complete.
    */
   function logout (redirect?: string): Promise<void> {
+    resetPiniaStores()
     return $keycloak.logout({
       redirectUri: redirect ?? `${location.origin}/${$i18n.locale.value}`
     })

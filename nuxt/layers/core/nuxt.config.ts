@@ -66,7 +66,8 @@ export default defineNuxtConfig({
       keycloakAuthUrl: process.env.NUXT_KEYCLOAK_AUTH_URL,
       keycloakRealm: process.env.NUXT_KEYCLOAK_REALM,
       keycloakClientId: process.env.NUXT_KEYCLOAK_CLIENTID,
-      authWebURL: process.env.NUXT_AUTH_WEB_URL
+      authWebURL: process.env.NUXT_AUTH_WEB_URL,
+      authApiURL: `${process.env.NUXT_AUTH_API_URL || ''}${process.env.NUXT_AUTH_API_VERSION || ''}`
       // registryHomeURL: process.env.NUXT_REGISTRY_HOME_URL
       // appBaseUrl: process.env.NUXT_APP_BASE_URL
     }
@@ -95,5 +96,9 @@ export default defineNuxtConfig({
     defaultLocale: 'en-CA',
     detectBrowserLanguage: false,
     vueI18n: './i18n.config.ts'
+  },
+
+  piniaPersistedstate: {
+    storage: 'sessionStorage'
   }
 })
