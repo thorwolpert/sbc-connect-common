@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { mockNuxtImport } from '@nuxt/test-utils/runtime'
-import { useConnectNav } from '~/composables/useConnectNav'
 
 mockNuxtImport('useRuntimeConfig', () => {
   return () => (

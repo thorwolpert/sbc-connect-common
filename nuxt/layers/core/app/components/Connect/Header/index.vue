@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { parseSpecialChars } from '~/utils/parseSpecialChars'
 const { loggedOutUserOptions, loggedOutUserOptionsMobile, loggedInUserOptions, createAccountUrl, notificationsOptions } = useConnectNav()
 const { isAuthenticated, kcUser } = useKeycloak()
 const localePath = useLocalePath()
