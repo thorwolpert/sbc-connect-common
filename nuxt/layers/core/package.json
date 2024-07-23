@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "main": "./nuxt.config.ts",
   "scripts": {
-    "dev": "nuxi dev --port 3000",
-    "dev:prepare": "nuxt prepare",
+    "dev": "nuxi dev .playground --port 3000",
+    "dev:prepare": "nuxt prepare .playground",
     "generate": "nuxt generate .playground",
     "preview": "nuxt preview .playground",
     "postinstall": "nuxt prepare",
