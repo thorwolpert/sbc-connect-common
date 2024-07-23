@@ -44,19 +44,33 @@ const accountStore = useConnectAccountStore()
               }
             }"
           >
-            <UButton
-              class="hidden lg:flex"
-              variant="header"
-              color="white"
-              :label="$t('btn.notifications')"
-              icon="i-mdi-caret-down"
-              trailing
+            <UChip
+              color="red"
+              position="top-left"
+              inset
+              :show="accountStore.pendingApprovalCount > 0"
             >
-              <template #leading>
-                <UIcon name="i-mdi-bell-outline" class="size-6 shrink-0" />
-              </template>
-            </UButton>
-            <UButton class="lg:hidden" variant="header" color="white" :aria-label="$t('btn.notifications')" icon="i-mdi-bell-outline" />
+              <UButton
+                class="hidden lg:flex"
+                variant="header"
+                color="white"
+                :label="$t('btn.notifications.main')"
+                :aria-label="$t('btn.notifications.aria', { count: accountStore.pendingApprovalCount })"
+                icon="i-mdi-caret-down"
+                trailing
+              >
+                <template #leading>
+                  <UIcon name="i-mdi-bell-outline" class="size-6 shrink-0" />
+                </template>
+              </UButton>
+              <UButton
+                class="lg:hidden"
+                variant="header"
+                color="white"
+                :aria-label="$t('btn.notifications.aria', { count: accountStore.pendingApprovalCount })"
+                icon="i-mdi-bell-outline"
+              />
+            </UChip>
           </UDropdown>
           <!-- account options dropdown -->
           <UDropdown

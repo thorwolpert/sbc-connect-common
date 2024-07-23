@@ -8,7 +8,10 @@ export default {
     accountInfo: 'Account Info',
     teamMembers: 'Team Members',
     transactions: 'Transactions',
-    notifications: 'Notifications',
+    notifications: {
+      main: 'Notifications',
+      aria: 'Notifications, {count} New'
+    },
     accountOptionsMenu: 'Account Options Menu',
     whatsNew: "What's New",
     mainMenu: 'Main menu'
