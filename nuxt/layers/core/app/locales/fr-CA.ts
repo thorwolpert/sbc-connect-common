@@ -25,6 +25,10 @@ export default {
     bceid: 'BCeID',
     idir: 'IDIR'
   },
+  notifications: {
+    none: 'Aucune Notification',
+    teamMemberApproval: "{count} membre de l'équipe doit être approuvé pour accéder à ce compte. | {count} membres de l'équipe doivent être approuvés pour accéder à ce compte."
+  },
   ConnectFooter: {
     navLabel: 'Liens utiles', // <nav> aria-label
     home: 'Accueil',

@@ -25,6 +25,10 @@ export default {
     bceid: 'BCeID',
     idir: 'IDIR'
   },
+  notifications: {
+    none: 'No Notifications',
+    teamMemberApproval: '{count} team member requires approval to access this account. | {count} team members require approval to access this account.'
+  },
   ConnectFooter: {
     navLabel: 'Useful Links', // <nav> aria-label
     home: 'Home',
