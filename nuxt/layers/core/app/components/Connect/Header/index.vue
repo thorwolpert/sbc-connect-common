@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { parseSpecialChars } from '~/utils/parseSpecialChars'
-const { loggedOutUserOptions, loggedOutUserOptionsMobile, loggedInUserOptions, createAccountUrl } = useConnectNav()
+const { loggedOutUserOptions, loggedOutUserOptionsMobile, loggedInUserOptions, createAccountUrl, notificationsOptions } = useConnectNav()
 const { isAuthenticated, kcUser } = useKeycloak()
 const localePath = useLocalePath()
 const accountStore = useConnectAccountStore()
@@ -31,7 +31,7 @@ const accountStore = useConnectAccountStore()
         <!-- notifications dropdown -->
         <ClientOnly>
           <UDropdown
-            :items="[]"
+            :items="notificationsOptions"
             :ui="{
               item: {
                 base: 'group flex items-center gap-4 w-full',
@@ -71,6 +71,11 @@ const accountStore = useConnectAccountStore()
                 icon="i-mdi-bell-outline"
               />
             </UChip>
+            <template #notifications>
+              <p>
+                {{ $t('notifications.teamMemberApproval', { count: accountStore.pendingApprovalCount }, accountStore.pendingApprovalCount) }}
+              </p>
+            </template>
           </UDropdown>
           <!-- account options dropdown -->
           <UDropdown
