@@ -1,16 +1,65 @@
-# Nuxt Layer Starter
+[![License](https://img.shields.io/badge/License-BSD%203%20Clause-blue.svg)](LICENSE)
 
-Create Nuxt extendable layer with this GitHub template.
+# Nuxt 3 Core Layer - SBC Connect Common
 
-## Setup
+This layer was created to enhance developer experience when creating BCROS/SBC applications.
 
-Make sure to install the dependencies:
+Included are items such as:
 
+- The BC Gov color theme
+- BCSans fonts
+- BC favicon
+- BC Gov logos 
+- Header and Footer components with relevant child components
+- Keycloak integration
+- Account Store with Pinia
+- Internationalization
+
+Also included are several common npm packages and nuxt modules.
+
+- [Nuxt UI](https://ui.nuxt.com/)
+- [Nuxt Content](https://content.nuxt.com/)
+- [Nuxt I18n](https://i18n.nuxtjs.org/?utm_source=nuxt.com&utm_medium=aside-module&utm_campaign=nuxt.com)
+- [Pinia](https://pinia.vuejs.org/introduction.html)
+- [Pinia Persisted State](https://prazdevs.github.io/pinia-plugin-persistedstate/?utm_source=nuxt.com&utm_medium=aside-module&utm_campaign=nuxt.com)
+- [VueUse](https://vueuse.org/)
+- [Keycloak](https://www.keycloak.org/docs/latest/securing_apps/index.html#_javascript_adapter)
+- [Zod](https://zod.dev/)
+
+## Development
+
+Create a fork and local copy of this repo. Answer _Y_ to create a local clone.
+```bash
+gh repo fork bcgov/sbc-connect-common
+```
+
+Change into the directory and install the packages.
 ```bash
 pnpm install
 ```
 
-## Working on your layer
+Start the development environment.
+```bash
+pnpm run dev
+```
+
+## Testing
+
+Run Vitest in watch mode for unit tests
+```bash
+pnpm test
+or
+pnpm test:unit
+```
+
+## How to Contribute
+
+If you would like to contribute, please see our [CONTRIBUTING](./CONTRIBUTING.md) guidelines.
+
+Please note that this project is released with a [Contributor Code of Conduct](./CODE_OF_CONDUCT.md).
+By participating in this project you agree to abide by its terms.
+
+## Working on the layer
 
 Your layer is at the root of this repository, it is exactly like a regular Nuxt project, except you can publish it on NPM.
 
@@ -18,56 +67,69 @@ The `.playground` directory should help you on trying your layer during developm
 
 Running `pnpm dev` will prepare and boot `.playground` directory, which imports your layer itself.
 
-## Distributing your layer
+## Distributing the layer
 
 Your Nuxt layer is shaped exactly the same as any other Nuxt project, except you can publish it on NPM.
 
-To do so, you only have to check if `files` in `package.json` are valid, then run:
+To do so, you only have to check if `files` in `package.json` are [valid](https://nuxt.com/docs/guide/going-further/layers#npm-package), then run:
 
 ```bash
 npm publish --access public
 ```
 
-Once done, your users will only have to run:
+Alternatively, you can run:
 
 ```bash
-npm install --save your-layer
+pnpm run publish <version>
+```
+
+Where `<version>` is either `patch`, `minor` or `major`. This will take care of `package.json` and update the version number for you, as well as publish to npm.
+
+Once published, users can install the layer with:
+
+```bash
+npm install --save @sbc-connect/nuxt-core-layer
 ```
 
 Then add the dependency to their `extends` in `nuxt.config`:
 
 ```ts
 defineNuxtConfig({
-  extends: 'your-layer'
+  extends: '@sbc-connect/nuxt-core-layer'
 })
 ```
 
-## Development Server
+## License
+Copyright © 2024 Province of British Columbia
 
-Start the development server on http://localhost:3000
+Licensed under the BSD 3 Clause License, (the "License");
+you may not use this file except in compliance with the License.
+The template for the license can be found here
+   https://opensource.org/license/bsd-3-clause/
 
-```bash
-pnpm dev
-```
+Redistribution and use in source and binary forms,
+with or without modification, are permitted provided that the
+following conditions are met:
 
-## Production
+1. Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
 
-Build the application for production:
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
 
-```bash
-pnpm build
-```
+3. Neither the name of the copyright holder nor the names of its contributors
+   may be used to endorse or promote products derived from this software
+   without specific prior written permission.
 
-Or statically generate it with:
-
-```bash
-pnpm generate
-```
-
-Locally preview production build:
-
-```bash
-pnpm preview
-```
-
-Checkout the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS”
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
