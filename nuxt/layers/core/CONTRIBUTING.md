@@ -15,7 +15,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 - [Reporting Bugs](#reporting-bugs)
 - [Suggesting Enhancements](#suggesting-enhancements)
 - [Code Style and Standards](#code-style-and-standards)
-- [Internationalization (i18n)](#internationalization-(i18n))
+- [Internationalization](#internationalization)
 - [Accessibility](#accessibility)
 - [Responsive Design](#responsive-design)
 <!-- - [Improving The Documentation](#improving-the-documentation)
@@ -59,7 +59,7 @@ All contributors retain the original copyright to their stuff, but by contributi
 
 ### Submitting Your Contribution
 
-1. Ensure your code follows the project's [style](#code-style-and-standards) and conventions, including [internationalization](#internationalization-(i18n)), [accessibility](#accessibility), and [responsive design](#responsive-design).
+1. Ensure your code follows the project's [style](#code-style-and-standards) and conventions, including [internationalization](#internationalization), [accessibility](#accessibility), and [responsive design](#responsive-design).
 2. Write or update tests as needed.
 3. Document your changes, including new features, changes to existing features, and any breaking changes.
 4. Submit a pull request to the main branch.
@@ -137,7 +137,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/bcgov/
 - Use environment variables for configuration settings, and never hard-code sensitive information or credentials in the codebase.
 - Regularly update dependencies to their latest versions to ensure security and stability.
 
-### Internationalization (i18n)
+### Internationalization
 
 - Ensure all text content is translated using the i18n framework to manage translations.
 - Use the `$t` function for translation strings within your components.
