@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { mockNuxtImport } from '@nuxt/test-utils/runtime'
-import { useConnectNav } from '~/composables/useConnectNav'
 
 mockNuxtImport('useRuntimeConfig', () => {
   return () => (
@@ -48,6 +47,7 @@ const mockCurrentAccount = {
   id: 'account1',
   accountType: 'PREMIUM'
 }
+let mockPendingApprovalCount = 0
 const mockSwitchCurrentAccount = vi.fn()
 mockNuxtImport('useConnectAccountStore', () => {
   return () => (
@@ -57,7 +57,8 @@ mockNuxtImport('useConnectAccountStore', () => {
         { id: 'account1', label: 'Account 1' },
         { id: 'account2', label: 'Account 2' }
       ],
-      switchCurrentAccount: mockSwitchCurrentAccount
+      switchCurrentAccount: mockSwitchCurrentAccount,
+      pendingApprovalCount: mockPendingApprovalCount
     }
   )
 })
@@ -367,6 +368,28 @@ describe('useConnectNav', () => {
           }
         ]
       ])
+    })
+  })
+
+  describe('notifications options', () => {
+    it('should return the label only for no notifications', () => {
+      mockPendingApprovalCount = 0
+      const connectNav = useConnectNav()
+      const options = connectNav.notificationsOptions.value
+      expect(options).toEqual([[{ label: 'notifications.none' }]])
+    })
+
+    it('should return a slot object for notifications', () => {
+      mockPendingApprovalCount = 3
+      const connectNav = useConnectNav()
+      const options = connectNav.notificationsOptions.value
+      expect(options).toEqual([[
+        {
+          label: 'n/a',
+          to: 'https://auth.example.com/account/account1/settings/team-members',
+          slot: 'notifications'
+        }
+      ]])
     })
   })
 })

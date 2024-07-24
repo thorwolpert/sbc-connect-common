@@ -8,7 +8,10 @@ export default {
     accountInfo: 'Account Info',
     teamMembers: 'Team Members',
     transactions: 'Transactions',
-    notifications: 'Notifications',
+    notifications: {
+      main: 'Notifications',
+      aria: 'Notifications, {count} New'
+    },
     accountOptionsMenu: 'Account Options Menu',
     whatsNew: "What's New",
     mainMenu: 'Main menu'
@@ -21,6 +24,10 @@ export default {
     bcsc: 'BC Services Card',
     bceid: 'BCeID',
     idir: 'IDIR'
+  },
+  notifications: {
+    none: 'No Notifications',
+    teamMemberApproval: '{count} team member requires approval to access this account. | {count} team members require approval to access this account.'
   },
   ConnectFooter: {
     navLabel: 'Useful Links', // <nav> aria-label

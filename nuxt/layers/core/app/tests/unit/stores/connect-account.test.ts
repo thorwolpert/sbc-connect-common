@@ -43,6 +43,7 @@ describe('Account Store Tests', () => {
     expect(accountStore.currentAccount).toEqual({})
     expect(accountStore.userAccounts).toEqual([])
     expect(accountStore.currentAccountName).toEqual('')
+    expect(accountStore.pendingApprovalCount).toEqual(0)
   })
 
   it('fetches and filters userAccounts', async () => {
@@ -76,6 +77,18 @@ describe('Account Store Tests', () => {
     expect(accountStore.currentAccount.label).toEqual('Account 1')
   })
 
+  it('getPendingApprovalCount', async () => {
+    const _fetch = vi.fn().mockResolvedValue({ count: 3 })
+    vi.stubGlobal('$fetch', _fetch)
+    const accountStore = useConnectAccountStore()
+
+    // set account info
+    await accountStore.getPendingApprovalCount(1, '1')
+    // assert
+    expect(_fetch).toBeCalledTimes(1)
+    expect(accountStore.pendingApprovalCount).toEqual(3)
+  })
+
   it('can switch the current account', () => {
     const accountStore = useConnectAccountStore()
     const accounts: Account[] = [
@@ -101,15 +114,18 @@ describe('Account Store Tests', () => {
 
     accountStore.userAccounts = accounts
     accountStore.currentAccount = accounts[0]!
+    accountStore.pendingApprovalCount = 4
 
     // check store has values
     expect(accountStore.userAccounts.length).toEqual(3)
     expect(accountStore.currentAccount).not.toEqual({})
+    expect(accountStore.pendingApprovalCount).toEqual(4)
 
     // reset store
     accountStore.$reset()
 
     expect(accountStore.userAccounts.length).toEqual(0)
     expect(accountStore.currentAccount).toEqual({})
+    expect(accountStore.pendingApprovalCount).toEqual(0)
   })
 })

@@ -135,10 +135,26 @@ export function useConnectNav () {
     [{ label: t('btn.createAccount'), icon: 'i-mdi-plus', to: createAccountUrl() }]
   ])
 
+  const notificationsOptions = computed<DropdownItem[][]>(() => {
+    const count = accountStore.pendingApprovalCount
+    const options: DropdownItem[][] = []
+    if (count > 0) {
+      options.push([{
+        label: 'n/a',
+        to: authWebUrl + `account/${accountStore.currentAccount.id}/settings/team-members`,
+        slot: 'notifications'
+      }])
+    } else {
+      options.push([{ label: t('notifications.none') }])
+    }
+    return options
+  })
+
   return {
     loggedInUserOptions,
     loggedOutUserOptions,
     loggedOutUserOptionsMobile,
+    notificationsOptions,
     createAccountUrl
   }
 }

@@ -8,7 +8,10 @@ export default {
     accountInfo: 'Infos Compte',
     teamMembers: 'Membres Équipe',
     transactions: 'Transactions',
-    notifications: 'Notifications',
+    notifications: {
+      main: 'Notifications',
+      aria: 'Notifications, {count} Nouveau'
+    },
     accountOptionsMenu: 'Menu Options du Compte',
     whatsNew: 'Quoi de Neuf',
     mainMenu: 'Menu principal'
@@ -21,6 +24,10 @@ export default {
     bcsc: 'BC Services Card',
     bceid: 'BCeID',
     idir: 'IDIR'
+  },
+  notifications: {
+    none: 'Aucune Notification',
+    teamMemberApproval: "{count} membre de l'équipe doit être approuvé pour accéder à ce compte. | {count} membres de l'équipe doivent être approuvés pour accéder à ce compte."
   },
   ConnectFooter: {
     navLabel: 'Liens utiles', // <nav> aria-label
