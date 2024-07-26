@@ -52,6 +52,7 @@ const isLargeScreen = useMediaQuery('(min-width: 1024px)')
       </template>
 
       <!-- whats new slot, only shows on small screens -->
+      <!-- TODO: implement whats new -->
       <template #whats-new="{ item }">
         <UIcon :name="item.icon" class="size-6 shrink-0 text-bcGovColor-midGray" />
         <span class="truncate">{{ item.label }}</span>

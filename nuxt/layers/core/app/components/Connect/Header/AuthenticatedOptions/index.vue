@@ -73,12 +73,12 @@ const accountStore = useConnectAccountStore()
 
       <!-- account setting slot -->
       <template #settings>
-        {{ $t('label.accountSettings').toLocaleUpperCase($i18n.locale) }}
+        <span class="text-bcGovColor-darkGray">{{ $t('label.accountSettings').toLocaleUpperCase($i18n.locale) }}</span>
       </template>
 
       <!-- switch accounts slot -->
       <template #accounts>
-        {{ $t('label.switchAccount').toLocaleUpperCase($i18n.locale) }}
+        <span class="text-bcGovColor-darkGray">{{ $t('label.switchAccount').toLocaleUpperCase($i18n.locale) }}</span>
       </template>
     </UDropdown>
   </div>
