@@ -54,7 +54,7 @@ const accountStore = useConnectAccountStore()
         <UAvatar
           :alt="parseSpecialChars(kcUser.fullName, 'U')[0]!.toUpperCase()"
           :ui="{
-            background: 'bg-bcGovBlue-300 dark:bg-[#E0E7ED]',
+            background: 'bg-blue-300 dark:bg-[#E0E7ED]',
             text: 'font-semibold leading-none text-white dark:text-bcGovColor-darkGray truncate',
             placeholder: 'font-semibold leading-none text-white truncate dark:text-bcGovColor-darkGray text-xl',
             rounded: 'rounded-sm'
