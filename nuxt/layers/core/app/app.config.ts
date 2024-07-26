@@ -3,7 +3,7 @@ export default defineAppConfig({
     name: 'Hello from Nuxt layer'
   },
   ui: {
-    primary: 'bcGovBlue',
+    primary: 'blue',
     gray: 'bcGovGray',
     button: {
       size: {
