@@ -4,7 +4,10 @@ const { kcUser } = useKeycloak()
 const accountStore = useConnectAccountStore()
 </script>
 <template>
-  <div class="flex gap-1">
+  <div
+    id="connect-header-auth-options"
+    class="flex gap-1"
+  >
     <!-- notifications dropdown -->
     <ConnectHeaderAuthenticatedOptionsNotifications />
     <!-- account options dropdown -->

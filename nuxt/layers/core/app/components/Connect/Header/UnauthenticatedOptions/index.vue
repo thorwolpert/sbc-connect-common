@@ -4,12 +4,16 @@ const { loggedOutUserOptions, loggedOutUserOptionsMobile, createAccountUrl } = u
 const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 </script>
 <template>
-  <div class="flex gap-1">
+  <div
+    id="connect-header-unauth-options"
+    class="flex gap-1"
+  >
     <!-- TODO: implement whats new -->
     <!-- whats new slideover -->
     <!-- <ConnectHeaderUnauthenticatedOptionsWhatsNew class="hidden lg:flex" /> -->
     <!-- login options dropdown or main menu on small screens -->
     <UDropdown
+      id="logged-out-options-dropdown"
       :items="isLargeScreen ? loggedOutUserOptions : loggedOutUserOptionsMobile"
       :ui="{
         item: {

@@ -13,12 +13,13 @@ const localePath = useLocalePath()
       :aria-label="$t('ConnectHeader.navLabel')"
     >
       <NuxtLink
+        id="header-logo-home-link"
         :to="localePath('/')"
         class="flex items-center gap-1 rounded-md px-2 focus:outline-none focus:ring-2 focus:ring-white"
         :aria-label="$t('btn.bcRegHome')"
       >
         <ConnectBCGovLogo />
-        <span class="text-base font-semibold text-white lg:text-lg"> {{ $t('label.bcRegOLServices') }} </span>
+        <span class="text-base font-semibold text-white lg:text-lg"> {{ $t('ConnectHeader.title') }} </span>
       </NuxtLink>
       <ClientOnly>
         <div class="flex gap-1">
