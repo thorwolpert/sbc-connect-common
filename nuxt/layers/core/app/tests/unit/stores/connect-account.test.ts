@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest'
 import { mockNuxtImport, registerEndpoint } from '@nuxt/test-utils/runtime'
 import { setActivePinia, createPinia } from 'pinia'
-import { AccountStatus, AccountType, useConnectAccountStore } from '#imports'
+import { AccountStatus, AccountType, useConnectAccountStore, ErrorCategory } from '#imports'
 
 mockNuxtImport('useRuntimeConfig', () => {
   return () => (

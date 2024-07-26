@@ -1,4 +1,4 @@
-// TODO: come up with and add error handling solution
+import { FetchError, ErrorCategory } from '#imports'
 /** Manages connect account data */
 export const useConnectAccountStore = defineStore('nuxt-core-connect-account-store', () => {
   const apiURL = useRuntimeConfig().public.authApiURL
