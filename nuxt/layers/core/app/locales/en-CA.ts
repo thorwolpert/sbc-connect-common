@@ -41,7 +41,8 @@ export default {
   ConnectHeader: {
     title: 'Service BC Connect',
     logoBtnLabel: 'Home', // <img> link aria-label
-    navLabel: 'Main Navigation' // <nav> aria-label
+    navLabel: 'Main Navigation', // <nav> aria-label
+    homeLink: 'Home'
   },
   ConnectBCGovLogo: {
     alt: 'Government of British Columbia Logo' // <img> alt

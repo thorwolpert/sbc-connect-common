@@ -41,7 +41,8 @@ export default {
   ConnectHeader: {
     title: 'Service Connect CB',
     logoBtnLabel: 'Accueil', // <img> link aria-label
-    navLabel: 'Navigation principale' // <nav> aria-label
+    navLabel: 'Navigation principale', // <nav> aria-label
+    homeLink: 'Home'
   },
   ConnectBCGovLogo: {
     alt: 'Logo du gouvernement de la Colombie-Britannique' // <img> alt

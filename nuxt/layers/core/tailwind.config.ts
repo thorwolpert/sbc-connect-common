@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 export default <Partial<Config>>{
-  content: ['*.{html,ts,js,vue}'],
+  content: ['*.{html,vue}'],
   theme: {
     extend: {
       fontFamily: {
@@ -46,9 +46,7 @@ export default <Partial<Config>>{
           error: '#D3272C',
           caution: '#F8661A' // caution icon or large text
         },
-        // aka "gray"... nuxt-ui renames gray to cool
-        // due to the fact that it is using gray itself
-        // so, we need to set bcGray and apply it to the gray in nuxt-ui
+        // used color generator recommended by tailwind docs: https://uicolors.app/create
         bcGovGray: {
           50: '#f8f9fa',
           100: '#f1f3f5',
@@ -59,71 +57,49 @@ export default <Partial<Config>>{
           600: '#868e96',
           700: '#495057',
           800: '#343a40',
-          900: '#212529'
+          900: '#212529',
+          950: '#232529'
         },
-        bcGovBlue: {
-          50: '#e0e7ed',
-          100: '#b3c2d1',
+        blue: {
+          50: '#e4edf7',
+          100: '#e0e7ed',
+          150: '#b3c2d1',
           200: '#8099b3',
           300: '#4d7094',
           350: '#38598a',
           400: '#26527d',
-          500: '#1669bb', // '#003366',
-          600: '#002e5e',
-          700: '#002753',
-          800: '#002049',
-          900: '#001438'
+          500: '#1669bb',
+          600: '#125192',
+          700: '#002e5e',
+          800: '#002753',
+          900: '#002049',
+          950: '#001438'
         },
-        bcGovGreen: {
-          // generated on http://mcg.mbitson.com/#!?mcgpalette0=%232e8540 using #2E8540 as base
-          50: '#E6F0E8',
-          100: '#C0DAC6',
-          200: '#97C2A0',
-          300: '#6DAA79',
-          400: '#4D975D',
-          500: '#2E8540',
-          600: '#297D3A',
-          700: '#237232',
-          800: '#1D682A',
-          900: '#12551C',
-          A100: '#8EFF9D',
-          A200: '#5BFF70',
-          A400: '#28FF44',
-          A700: '#0EFF2E'
+        red: {
+          50: '#fef2f2',
+          100: '#fde3e4',
+          200: '#fdcbcc',
+          300: '#faa7a9',
+          400: '#f57478',
+          500: '#eb484d',
+          600: '#d3272c',
+          700: '#b52024',
+          800: '#961e21',
+          900: '#7d1f22',
+          950: '#440b0d'
         },
-        bcGovRed: {
-          // generated on http://mcg.mbitson.com/#!?mcgpalette0=%232e8540 using #D3272C as base
-          50: '#FAE5E6',
-          100: '#F2BEC0',
-          200: '#E99396',
-          300: '#E0686B',
-          400: '#DA474C',
-          500: '#D3272C',
-          600: '#CE2327',
-          700: '#C81D21',
-          800: '#C2171B',
-          900: '#B70E10',
-          A100: '#FFE5E5',
-          A200: '#FFB2B3',
-          A400: '#FF7F80',
-          A700: '#FF6567'
-        },
-        bcGovOrange: {
-          // generated on http://mcg.mbitson.com/#!?mcgpalette0=%232e8540 using #F8661A as base
-          50: '#FEEDE4',
-          100: '#FDD1BA',
-          200: '#FCB38D',
-          300: '#FA945F',
-          400: '#F97D3C',
-          500: '#F8661A',
-          600: '#F75E17',
-          700: '#F65313',
-          800: '#F5490F',
-          900: '#F33808',
-          A100: '#FFFFFF',
-          A200: '#FFECE8',
-          A400: '#FFC1B5',
-          A700: '#FFAB9C'
+        yellow: {
+          50: '#fffbeb',
+          100: '#fef2c7',
+          200: '#fee589',
+          300: '#fdd14c',
+          400: '#fcba19',
+          500: '#f69b0a',
+          600: '#da7505',
+          700: '#b55108',
+          800: '#933e0d',
+          900: '#79340e',
+          950: '#451903'
         }
       },
       // @ts-ignore: ignore theme as any
