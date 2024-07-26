@@ -1,4 +1,4 @@
-// TODO: come up with and add error handling solution
+import { FetchError, ErrorCategory } from '#imports'
 /** Manages connect account data */
 export const useConnectAccountStore = defineStore('nuxt-core-connect-account-store', () => {
   const apiURL = useRuntimeConfig().public.authApiURL
@@ -8,6 +8,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
   const userAccounts = ref<Account[]>([])
   const currentAccountName = computed<string>(() => currentAccount.value?.label || '')
   const pendingApprovalCount = ref<number>(0)
+  const errors = ref<FetchError[]>([])
 
   // TODO: implement
   /** Get user information from AUTH */
@@ -54,6 +55,14 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
       const response = await $fetch<UserSettings[]>(`${apiURL}/users/${keycloakGuid}/settings`, {
         headers: {
           Authorization: `Bearer ${token}`
+        },
+        onResponseError ({ response }) {
+          errors.value.push({
+            statusCode: response.status || 500,
+            message: response._data?.message || 'Error retrieving user accounts.',
+            detail: response._data.detail || '',
+            category: ErrorCategory.ACCOUNT_LIST
+          })
         }
       })
 
@@ -63,22 +72,19 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
         return undefined
       }
     } catch (e) {
-      console.log(e)
+      console.error('Error retrieving user accounts.', e)
+      return undefined
     }
   }
 
   /** Set the user account list and current account */
   async function setAccountInfo () {
-    try {
-      if (kcUser.value?.keycloakGuid) {
-        const response = await getUserAccounts(kcUser.value?.keycloakGuid)
-        if (response && response[0] !== undefined) {
-          userAccounts.value = response
-          currentAccount.value = response[0]
-        }
+    if (kcUser.value?.keycloakGuid) {
+      const response = await getUserAccounts(kcUser.value?.keycloakGuid)
+      if (response && response[0] !== undefined) {
+        userAccounts.value = response
+        currentAccount.value = response[0]
       }
-    } catch (e) {
-      console.log(e)
     }
   }
 
@@ -96,6 +102,14 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
       const response = await $fetch<{ count: number }>(`${apiURL}/users/${keycloakGuid}/org/${accountId}/notifications`, {
         headers: {
           Authorization: `Bearer ${token}`
+        },
+        onResponseError ({ response }) {
+          errors.value.push({
+            statusCode: response.status || 500,
+            message: response._data.message || 'Error retrieving pending approvals.',
+            detail: response._data.detail || '',
+            category: ErrorCategory.PENDING_APPROVAL_COUNT
+          })
         }
       })
 
@@ -103,8 +117,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
         pendingApprovalCount.value = response.count
       }
     } catch (e) {
-      console.error('Error retrieving pending approvals.')
-      console.error(e)
+      console.error('Error retrieving pending approvals.', e)
     }
   }
 
@@ -112,6 +125,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
     currentAccount.value = {} as Account
     userAccounts.value = []
     pendingApprovalCount.value = 0
+    errors.value = []
   }
 
   return {
@@ -119,6 +133,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
     currentAccountName,
     userAccounts,
     pendingApprovalCount,
+    errors,
     // updateAuthUserInfo,
     setAccountInfo,
     getUserAccounts,
