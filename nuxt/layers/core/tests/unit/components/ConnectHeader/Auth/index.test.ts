@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime'
+import { enI18n } from '~~/tests/unit/mocks/i18n'
 import { ConnectHeaderAuthenticatedOptions } from '#components'
-import { enI18n } from '~/tests/unit/mocks/i18n'
 
 mockNuxtImport('useConnectAccountStore', () => {
   return () => ({

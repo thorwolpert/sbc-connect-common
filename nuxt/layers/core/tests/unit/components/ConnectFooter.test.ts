@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
-import { enI18n } from '../mocks/i18n'
+import { enI18n } from '~~/tests/unit/mocks/i18n'
 import { ConnectFooter } from '#components'
 
 describe('<ConnectFooter/>', () => {

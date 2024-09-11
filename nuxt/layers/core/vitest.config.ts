@@ -1,4 +1,5 @@
 import { fileURLToPath } from 'node:url'
+import path from 'path'
 import { defineVitestConfig } from '@nuxt/test-utils/config'
 
 export default defineVitestConfig({
@@ -7,7 +8,7 @@ export default defineVitestConfig({
     dir: 'tests',
     coverage: {
       provider: 'v8',
-      reportsDirectory: './app/tests/unit/coverage',
+      reportsDirectory: path.resolve(__dirname, 'tests/coverage'), // This ensures an absolute path,
       include: [
         'pages/**',
         'layouts/**',

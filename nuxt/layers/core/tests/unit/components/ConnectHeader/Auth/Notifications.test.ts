@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime'
+import { enI18n } from '~~/tests/unit/mocks/i18n'
 import { ConnectHeaderAuthenticatedOptionsNotifications } from '#components'
-import { enI18n } from '~/tests/unit/mocks/i18n'
 
 mockNuxtImport('useConnectNav', () => {
   return () => (

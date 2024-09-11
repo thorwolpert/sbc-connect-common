@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { ConnectHeaderUnauthenticatedOptionsWhatsNew } from '#components'
-import { enI18n } from '~/tests/unit/mocks/i18n'
+import { enI18n } from '~~/tests/unit/mocks/i18n'
 
 // TODO: add tests when whats new is implemented
 describe('<ConnectHeaderUnauthenticatedOptionsWhatsNew />', () => {
