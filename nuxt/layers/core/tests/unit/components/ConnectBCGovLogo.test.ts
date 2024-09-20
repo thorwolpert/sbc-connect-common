@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { ConnectBCGovLogo } from '#components'
-import { enI18n, frI18n, randomI18n } from '~/tests/unit/mocks/i18n'
+import { enI18n, frI18n, randomI18n } from '~~/tests/unit/mocks/i18n'
 
 describe('<ConnectBCGovLogo />', () => {
   it('displays English logo when locale is en-CA', async () => {

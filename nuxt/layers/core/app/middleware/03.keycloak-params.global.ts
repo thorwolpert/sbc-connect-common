@@ -8,6 +8,7 @@ export default defineNuxtRouteMiddleware((to) => {
     params.delete('session_state')
     params.delete('code')
     params.delete('error')
+    params.delete('iss')
     to.fullPath = to.path + (params.size > 0 ? `?${params}` : '') + to.hash
   }
 })

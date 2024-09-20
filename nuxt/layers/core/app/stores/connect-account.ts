@@ -1,4 +1,4 @@
-import { FetchError, ErrorCategory } from '#imports'
+import { type FetchError, ErrorCategory } from '#imports'
 /** Manages connect account data */
 export const useConnectAccountStore = defineStore('nuxt-core-connect-account-store', () => {
   const apiURL = useRuntimeConfig().public.authApiURL
@@ -122,6 +122,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
   }
 
   function $reset () {
+    sessionStorage.removeItem('nuxt-core-connect-account-store')
     currentAccount.value = {} as Account
     userAccounts.value = []
     pendingApprovalCount.value = 0

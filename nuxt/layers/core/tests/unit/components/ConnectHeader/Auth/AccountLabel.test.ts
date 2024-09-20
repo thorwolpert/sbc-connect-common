@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
+import { enI18n, frI18n } from '~~/tests/unit/mocks/i18n'
 import { ConnectHeaderAuthenticatedOptionsAccountLabel } from '#components'
-import { enI18n, frI18n } from '~/tests/unit/mocks/i18n'
 
 describe('<ConnectHeaderAuthenticatedOptionsAccountLabel />', () => {
   it('renders with default props', async () => {

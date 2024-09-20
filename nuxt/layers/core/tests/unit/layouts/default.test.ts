@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { renderSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime'
 import defaultLayout from '~/layouts/default.vue'
-import { enI18n } from '~/tests/unit/mocks/i18n'
+import { enI18n } from '~~/tests/unit/mocks/i18n'
 
 const setLocaleMock = vi.fn()
 mockNuxtImport('useI18n', () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime'
 import { ConnectHeader } from '#components'
-import { enI18n } from '~/tests/unit/mocks/i18n'
+import { enI18n } from '~~/tests/unit/mocks/i18n'
 
 let mockIsAuthenticated = true
 mockNuxtImport('useKeycloak', () => {

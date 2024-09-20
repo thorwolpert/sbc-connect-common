@@ -1,5 +1,11 @@
 <script setup lang="ts">
 const { isAuthenticated, login, logout } = useKeycloak()
+const ldStore = useConnectLaunchdarklyStore()
+
+onMounted(() => {
+  const test = ldStore.getStoredFlag('allowable-business-passcode-types')
+  console.log('test: ', test)
+})
 </script>
 <template>
   <div class="flex flex-col gap-8 border border-black px-2 py-8">

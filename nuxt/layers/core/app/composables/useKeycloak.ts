@@ -1,4 +1,3 @@
-import { resetPiniaStores } from '~/utils/resetPiniaStores'
 export const useKeycloak = () => {
   const { $keycloak, $i18n } = useNuxtApp()
 
