@@ -1,5 +1,9 @@
 export default {
   btn: {
+    appVersion: {
+      show: 'Show App Version',
+      hide: 'Hide App Version'
+    },
     bcRegHome: 'BC Registries Home',
     createAccount: 'Create Account',
     editProfile: 'Edit Profile',
@@ -32,6 +36,7 @@ export default {
   ConnectFooter: {
     navLabel: 'Useful Links', // <nav> aria-label
     home: 'Home',
+    releaseNotes: 'Release Notes',
     disclaimer: 'Disclaimer',
     privacy: 'Privacy',
     ally: 'Accessibility',

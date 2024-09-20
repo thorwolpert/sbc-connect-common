@@ -1,5 +1,9 @@
 export default {
   btn: {
+    appVersion: {
+      show: "Afficher la version de l'application",
+      hide: "Masquer la version de l'application"
+    },
     bcRegHome: 'Accueil des Registres de la CB',
     createAccount: 'Créer un Compte',
     editProfile: 'Editer le Profil',
@@ -32,6 +36,7 @@ export default {
   ConnectFooter: {
     navLabel: 'Liens utiles', // <nav> aria-label
     home: 'Accueil',
+    releaseNotes: 'Notes de Version',
     disclaimer: 'Clause de non-responsabilité',
     privacy: 'Confidentialité',
     ally: 'Accessibilité',

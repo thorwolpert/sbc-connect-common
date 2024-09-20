@@ -70,8 +70,8 @@ export default defineNuxtConfig({
       authApiURL: `${process.env.NUXT_AUTH_API_URL || ''}${process.env.NUXT_AUTH_API_VERSION || ''}`,
       ldClientId: process.env.NUXT_LD_CLIENT_ID || '',
       appName: process.env.npm_package_name || '',
-      registryHomeURL: process.env.NUXT_REGISTRY_HOME_URL
-      // appBaseUrl: process.env.NUXT_APP_BASE_URL
+      registryHomeURL: process.env.NUXT_REGISTRY_HOME_URL,
+      version: `BRD UI v${process.env.npm_package_version || ''}`
     }
   },
 
