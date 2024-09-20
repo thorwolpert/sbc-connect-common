@@ -40,6 +40,25 @@ export default defineAppConfig({
     },
     chip: {
       base: 'absolute rounded-full ring-0 dark:ring-gray-900 flex items-center justify-center text-white dark:text-gray-900 font-medium whitespace-nowrap'
+    },
+    dropdown: {
+      container: 'overflow-clip rounded-md shadow-md',
+      rounded: 'rounded-md',
+      padding: 'py-0 px-0',
+      width: 'min-w-[250px]',
+      height: 'max-h-[75dvh]',
+      item: {
+        rounded: 'rounded-none',
+        base: 'flex items-center gap-2 w-full hover:text-bcGovColor-activeBlue hover:bg-bcGovColor-gray1',
+        padding: 'px-4 py-3',
+        disabled: 'cursor-default font-semibold opacity-100 hover:bg-white pt-0',
+        active: 'bg-bcGovColor-gray1 text-bcGovColor-activeBlue',
+        icon: {
+          base: 'flex-shrink-0 size-4 text-bcGovColor-activeBlue',
+          active: 'text-bcGovColor-activeBlue',
+          inactive: 'text-bcGovColor-midGray'
+        }
+      }
     }
   }
 })

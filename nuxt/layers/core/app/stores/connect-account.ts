@@ -8,6 +8,10 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
   const userAccounts = ref<Account[]>([])
   const currentAccountName = computed<string>(() => currentAccount.value?.label || '')
   const pendingApprovalCount = ref<number>(0)
+  const user = computed(() => kcUser.value)
+  const userFirstName: Ref<string> = ref(user.value?.firstName || '-')
+  const userLastName: Ref<string> = ref(user.value?.lastName || '')
+  const userFullName = computed(() => `${userFirstName.value} ${userLastName.value}`)
   const errors = ref<FetchError[]>([])
 
   // TODO: implement
@@ -135,6 +139,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
     userAccounts,
     pendingApprovalCount,
     errors,
+    userFullName,
     // updateAuthUserInfo,
     setAccountInfo,
     getUserAccounts,

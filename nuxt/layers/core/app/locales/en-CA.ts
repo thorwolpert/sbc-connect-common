@@ -20,7 +20,7 @@ export default {
     accountSettings: 'Account Settings',
     bcRegOLServices: 'BC Registries and Online Services',
     switchAccount: 'Switch Account',
-    selectLoginMethod: 'Select Login Method',
+    selectLoginMethod: 'Select log in method',
     bcsc: 'BC Services Card',
     bceid: 'BCeID',
     idir: 'IDIR'

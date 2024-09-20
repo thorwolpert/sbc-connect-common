@@ -20,7 +20,7 @@ export default {
     accountSettings: 'Paramètres Compte',
     bcRegOLServices: 'Registres et Services en ligne de la CB',
     switchAccount: 'Changer de Compte',
-    selectLoginMethod: 'Sélectionnez la Méthode de Connexion',
+    selectLoginMethod: 'Sélectionnez la méthode de connexion',
     bcsc: 'BC Services Card',
     bceid: 'BCeID',
     idir: 'IDIR'

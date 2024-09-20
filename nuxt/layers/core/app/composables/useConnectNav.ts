@@ -70,21 +70,28 @@ export function useConnectNav () {
   })
 
   const switchAccountOptions = computed<DropdownItem[]>(() => {
-    const options: DropdownItem[] = [
-      { label: 'n/a', slot: 'accounts', disabled: true }
-    ]
-    accountStore.userAccounts.forEach((account) => {
-      const isActive = accountStore.currentAccount.id === account.id
-      options.push({
-        label: account.label,
-        click: () => {
-          if (!isActive && account.id) {
-            accountStore.switchCurrentAccount(account.id)
-          }
-        },
-        icon: isActive ? 'i-mdi-check' : ''
+    const options: DropdownItem[] = []
+
+    if (accountStore.userAccounts.length > 1) {
+      options.push({ label: 'n/a', slot: 'accounts', disabled: true })
+
+      accountStore.userAccounts.forEach((account) => {
+        const isActive = accountStore.currentAccount.id === account.id
+        options.push({
+          label: account.label,
+          click: () => {
+            if (!isActive && account.id) {
+              accountStore.switchCurrentAccount(account.id)
+            }
+          },
+          icon: isActive ? 'i-mdi-check' : '',
+          class: isActive ? 'bg-bcGovGray-100 text-bcGovColor-activeBlue' : '',
+          labelClass: isActive ? 'pl-0' : 'pl-6',
+          iconClass: isActive ? 'text-bcGovColor-activeBlue' : ''
+        })
       })
-    })
+    }
+
     return options
   })
 
@@ -95,12 +102,22 @@ export function useConnectNav () {
     return [{ label: t('btn.createAccount'), icon: 'i-mdi-plus', to: createAccountUrl() }]
   })
 
-  const loggedInUserOptions = computed<DropdownItem[][]>(() => [
-    basicAccountOptions.value,
-    accountSettingsOptions.value,
-    switchAccountOptions.value,
-    createAccountOptions.value
-  ])
+  const loggedInUserOptions = computed<DropdownItem[][]>(() => {
+    const options: DropdownItem[][] = [
+      basicAccountOptions.value,
+      accountSettingsOptions.value
+    ]
+
+    if (switchAccountOptions.value.length > 0) {
+      options.push(switchAccountOptions.value)
+    }
+
+    if (createAccountOptions.value.length > 0) {
+      options.push(createAccountOptions.value)
+    }
+
+    return options
+  })
 
   const loggedOutUserOptions = computed<DropdownItem[][]>(() => [
     [

@@ -16,12 +16,16 @@ const isLargeScreen = useMediaQuery('(min-width: 1024px)')
       id="logged-out-options-dropdown"
       :items="isLargeScreen ? loggedOutUserOptions : loggedOutUserOptionsMobile"
       :ui="{
+        container: 'min-w-[300px]',
+        padding: 'py-2 px-0',
         item: {
-          base: 'group flex items-center gap-4 w-full',
-          disabled: 'cursor-default opacity-100',
+          rounded: 'rounded-none',
+          base: 'flex items-center gap-4 w-full hover:text-bcGovColor-activeBlue hover:bg-bcGovColor-gray1',
+          padding: 'px-4 py-3',
+          disabled: 'cursor-default opacity-100 hover:bg-white',
           icon: {
-            base: 'flex-shrink-0 size-6',
-            active: 'text-gray-500 dark:text-gray-400',
+            base: 'flex-shrink-0 size-5 text-bcGovColor-activeBlue',
+            active: 'text-bcGovColor-activeBlue',
             inactive: 'text-bcGovColor-midGray',
           },
         }
@@ -48,7 +52,7 @@ const isLargeScreen = useMediaQuery('(min-width: 1024px)')
       />
 
       <template #method>
-        <span class="font-semibold text-bcGovColor-darkGray"> {{ $t('label.selectLoginMethod') }} </span>
+        <span class="pointer-events-none text-sm font-semibold text-bcGovColor-darkGray"> {{ $t('label.selectLoginMethod') }} </span>
       </template>
 
       <!-- whats new slot, only shows on small screens -->
