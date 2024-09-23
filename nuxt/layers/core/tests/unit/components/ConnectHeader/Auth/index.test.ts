@@ -68,8 +68,8 @@ describe('<ConnectHeaderAuthenticatedOptions />', () => {
       }
     })
 
-    expect(wrapper.html()).toContain('TEST USER')
-    expect(wrapper.html()).toContain('TEST ACCOUNT')
+    expect(wrapper.text()).toContain('Test User')
+    expect(wrapper.text()).toContain('Test Account')
   })
 
   it('opens the account options dropdown', async () => {

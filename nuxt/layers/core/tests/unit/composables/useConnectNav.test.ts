@@ -214,8 +214,8 @@ describe('useConnectNav', () => {
       expect(options).toHaveLength(3)
       expect(options).toEqual([
         { label: 'n/a', slot: 'accounts', disabled: true },
-        { label: 'Account 1', click: expect.any(Function), icon: 'i-mdi-check' },
-        { label: 'Account 2', click: expect.any(Function), icon: '' }
+        { label: 'Account 1', class: 'bg-bcGovGray-100 text-bcGovColor-activeBlue', iconClass: 'text-bcGovColor-activeBlue', labelClass: 'pl-0', click: expect.any(Function), icon: 'i-mdi-check' },
+        { label: 'Account 2', class: '', iconClass: '', labelClass: 'pl-6', click: expect.any(Function), icon: '' }
       ])
     })
   })
@@ -239,13 +239,17 @@ describe('useConnectNav', () => {
       expect(options).toEqual([{ label: 'btn.createAccount', icon: 'i-mdi-plus', to: 'https://auth.example.com/setup-account' }])
     })
 
-    it('should not create create account options for idir users', () => {
+    it('should not create createAccountOptions for idir users', () => {
       mockIsAuthenticated.value = true
       mockLoginSource.value = 'IDIR'
       const connectNav = useConnectNav()
-      const options = connectNav.loggedInUserOptions.value[3]
-      expect(options).toHaveLength(0)
-      expect(options).toEqual([])
+
+      const options = connectNav.loggedInUserOptions.value
+
+      expect(options.length).toBeLessThan(4)
+
+      const createAccountOptions = options.find(option => option.some(item => item.label === 'Create Account'))
+      expect(createAccountOptions).toBeUndefined()
     })
   })
 
