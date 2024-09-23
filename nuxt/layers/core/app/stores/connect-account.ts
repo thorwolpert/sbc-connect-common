@@ -2,7 +2,7 @@ import { type ApiError, ErrorCategory } from '#imports'
 /** Manages connect account data */
 export const useConnectAccountStore = defineStore('nuxt-core-connect-account-store', () => {
   const { $authApi } = useNuxtApp()
-  const { kcUser } = useKeycloak()
+  const { kcUser, isAuthenticated } = useKeycloak()
   // selected user account
   const currentAccount = ref<Account>({} as Account)
   const userAccounts = ref<Account[]>([])
@@ -13,6 +13,29 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
   const userLastName: Ref<string> = ref(user.value?.lastName || '')
   const userFullName = computed(() => `${userFirstName.value} ${userLastName.value}`)
   const errors = ref<ApiError[]>([])
+
+  const isStaffOrSbcStaff = computed<boolean>(() => {
+    if (!isAuthenticated.value) { return false }
+    const currentAccountIsStaff = [AccountType.STAFF, AccountType.SBC_STAFF].includes(currentAccount.value.accountType)
+    return currentAccountIsStaff || kcUser.value.roles.includes(UserRole.Staff)
+  })
+
+  /**
+   * Checks if the current account or the Keycloak user has any of the specified roles.
+   *
+   * @param roles - An array of roles to check against the current account or Keycloak user roles.
+   * @returns Returns `true` if the current account has one of the roles, or if the Keycloak user has one of the roles.
+   *
+   * @example
+   * // Assuming the current account has the type 'admin' and the kcUser has the roles ['editor', 'viewer', 'admin']:
+   * const rolesToCheck = ['admin', 'superadmin'];
+   * const hasRequiredRole = hasRoles(rolesToCheck); // true
+  */
+  function hasRoles (roles: string[]): boolean {
+    const currentAccountHasRoles = roles.includes(currentAccount.value.accountType)
+    const kcUserHasRoles = roles.some(role => kcUser.value.roles.includes(role))
+    return currentAccountHasRoles || kcUserHasRoles
+  }
 
   // TODO: implement
   /** Get user information from AUTH */
@@ -132,7 +155,9 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
     pendingApprovalCount,
     errors,
     userFullName,
+    isStaffOrSbcStaff,
     // updateAuthUserInfo,
+    hasRoles,
     setAccountInfo,
     getUserAccounts,
     switchCurrentAccount,
