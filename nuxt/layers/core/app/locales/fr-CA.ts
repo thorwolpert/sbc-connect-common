@@ -55,5 +55,10 @@ export default {
   ConnectLocaleSelect: {
     // aria-label
     label: 'Sélectionnez une langue, langue courante: Français'
+  },
+  ConnectBreadcrumb: {
+    default: 'Service Connect CB',
+    backBtn: 'Retour',
+    arialabel: "Fil d'Ariane"
   }
 }

@@ -17,12 +17,12 @@ const isLargeScreen = useMediaQuery('(min-width: 1024px)')
       :items="isLargeScreen ? loggedOutUserOptions : loggedOutUserOptionsMobile"
       :ui="{
         container: 'min-w-[300px]',
-        padding: 'py-2 px-0',
+        padding: 'py-3 px-0',
         item: {
           rounded: 'rounded-none',
           base: 'flex items-center gap-4 w-full hover:text-bcGovColor-activeBlue hover:bg-bcGovColor-gray1',
           padding: 'px-4 py-3',
-          disabled: 'cursor-default opacity-100 hover:bg-white',
+          disabled: 'cursor-default opacity-100 hover:bg-white py-0',
           icon: {
             base: 'flex-shrink-0 size-5 text-bcGovColor-activeBlue',
             active: 'text-bcGovColor-activeBlue',

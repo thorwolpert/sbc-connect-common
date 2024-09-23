@@ -58,7 +58,7 @@ const links = [
           </li>
         </ul>
       </nav>
-      <div class="ml-auto">
+      <div class="-mb-1">
         <span class="italic text-bcGovColor-navDivider">{{ $t('ConnectFooter.bcApp') }}</span>
         <ConnectToggletip
           id="app-version-info"

@@ -55,5 +55,10 @@ export default {
   ConnectLocaleSelect: {
     // aria-label
     label: 'Select a Language, current language: English'
+  },
+  ConnectBreadcrumb: {
+    default: 'Service BC Connect',
+    backBtn: 'Go Back',
+    arialabel: 'Breadcrumb'
   }
 }
