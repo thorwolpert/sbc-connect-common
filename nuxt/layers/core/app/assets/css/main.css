@@ -7,28 +7,23 @@
   font-style: normal;
   font-weight: 400;
   src: url("BCGovFonts/BCSans-Regular.woff2") format("woff2"),
-    /* Optimized for very modern browsers */
-      url("BCGovFonts/BCSans-Regular.woff") format("woff"),
-    local("BCSans"); /* Modern Browsers */
+       url("BCGovFonts/BCSans-Regular.woff") format("woff"); /* Optimized for very modern browsers */
   font-display: swap;
 }
 
 @font-face {
   font-family: "BCSans";
   font-style: italic;
+  font-weight: 400;
   src: url("BCGovFonts/BCSans-Italic.woff2") format("woff2"),
-    /* Optimized for very modern browsers */
-      url("BCGovFonts/BCSans-Italic.woff") format("woff"),
-    local("BCSans"); /* Modern Browsers */
+       url("BCGovFonts/BCSans-Italic.woff") format("woff"); /* Optimized for very modern browsers */
   font-display: swap;
 }
 @font-face {
   font-family: "BCSans";
   font-weight: 700;
   src: url("BCGovFonts/BCSans-Bold.woff2") format("woff2"),
-    /* Optimized for very modern browsers */ url("BCGovFonts/BCSans-Bold.woff")
-      format("woff"),
-    local("BCSans"); /* Modern Browsers */
+       url("BCGovFonts/BCSans-Bold.woff") format("woff"); /* Optimized for very modern browsers */
   font-display: swap;
 }
 
@@ -37,8 +32,64 @@
   font-style: italic;
   font-weight: 700;
   src: url("BCGovFonts/BCSans-BoldItalic.woff2") format("woff2"),
-    /* Optimized for very modern browsers */
-      url("BCGovFonts/BCSans-BoldItalic.woff") format("woff"),
-    local("BCSans"); /* Modern Browsers */
+       url("BCGovFonts/BCSans-BoldItalic.woff") format("woff"); /* Optimized for very modern browsers */
   font-display: swap;
+}
+
+html,
+body {
+  min-height: 100dvh; /* Modern browsers */
+  min-height: 100vh;
+  font-family: 'BCSans', Verdana, Arial, sans-serif;
+  font-size: 0.875rem;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (min-width: 960px) {
+  html,
+  body {
+    font-size: 1rem;
+  }
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-bcGovGray-900;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-bold;
+  }
+
+  h1,
+  h2 {
+    @apply leading-9;
+  }
+
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-lg;
+  }
+
+  h3 {
+    @apply text-base;
+  }
+
+  p {
+    @apply font-normal text-bcGovColor-midGray;
+  }
+
+  td,
+  th {
+    @apply text-gray-900 text-sm;
+  }
 }
