@@ -22,7 +22,7 @@ onMounted(async () => {
 <!-- must style globally for vhtml style to work  -->
 <style>
 .vhtml > a {
-  color: #1a5a96;
+  color: #212529;
   text-decoration: underline;
 }
 </style>
