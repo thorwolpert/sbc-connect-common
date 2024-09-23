@@ -23,6 +23,7 @@ export default <Partial<Config>>{
           navDivider: '#FCBA19',
           // LINK COLOURS
           activeBlue: '#1669BB',
+          markBlue: '#1a5a96',
           // TEXT/NON-CLICKABLE COLOURS
           darkGray: '#212529',
           midGray: '#495057',

@@ -5,6 +5,11 @@ export default defineAppConfig({
   ui: {
     primary: 'blue',
     gray: 'bcGovGray',
+    alert: {
+      variant: {
+        system_banner: 'bg-bcGovColor-navDivider text-bcGovColor-darkGray max-w-bcGovLg mx-auto'
+      }
+    },
     button: {
       size: {
         bcGov: 'text-sm'
