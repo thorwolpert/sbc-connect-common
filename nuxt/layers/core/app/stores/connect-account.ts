@@ -1,8 +1,8 @@
-import { type FetchError, ErrorCategory } from '#imports'
+import { type ApiError, ErrorCategory } from '#imports'
 /** Manages connect account data */
 export const useConnectAccountStore = defineStore('nuxt-core-connect-account-store', () => {
-  const apiURL = useRuntimeConfig().public.authApiURL
-  const { getToken, kcUser } = useKeycloak()
+  const { $authApi } = useNuxtApp()
+  const { kcUser } = useKeycloak()
   // selected user account
   const currentAccount = ref<Account>({} as Account)
   const userAccounts = ref<Account[]>([])
@@ -12,7 +12,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
   const userFirstName: Ref<string> = ref(user.value?.firstName || '-')
   const userLastName: Ref<string> = ref(user.value?.lastName || '')
   const userFullName = computed(() => `${userFirstName.value} ${userLastName.value}`)
-  const errors = ref<FetchError[]>([])
+  const errors = ref<ApiError[]>([])
 
   // TODO: implement
   /** Get user information from AUTH */
@@ -55,11 +55,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
   /** Get the user's account list */
   async function getUserAccounts (keycloakGuid: string): Promise<Account[] | undefined> {
     try {
-      const token = await getToken()
-      const response = await $fetch<UserSettings[]>(`${apiURL}/users/${keycloakGuid}/settings`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
+      const response = await $authApi<UserSettings[]>(`/users/${keycloakGuid}/settings`, {
         onResponseError ({ response }) {
           errors.value.push({
             statusCode: response.status || 500,
@@ -76,7 +72,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
         return undefined
       }
     } catch (e) {
-      console.error('Error retrieving user accounts.', e)
+      logFetchError(e, 'Error retrieving user accounts')
       return undefined
     }
   }
@@ -102,11 +98,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
 
   async function getPendingApprovalCount (accountId: number, keycloakGuid: string): Promise<void> { // Promise<AxiosResponse<Count>>
     try {
-      const token = await getToken()
-      const response = await $fetch<{ count: number }>(`${apiURL}/users/${keycloakGuid}/org/${accountId}/notifications`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
+      const response = await $authApi<{ count: number }>(`/users/${keycloakGuid}/org/${accountId}/notifications`, {
         onResponseError ({ response }) {
           errors.value.push({
             statusCode: response.status || 500,
@@ -121,7 +113,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
         pendingApprovalCount.value = response.count
       }
     } catch (e) {
-      console.error('Error retrieving pending approvals.', e)
+      logFetchError(e, 'Error retrieving pending approvals')
     }
   }
 
