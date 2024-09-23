@@ -60,5 +60,11 @@ export default {
     default: 'Service BC Connect',
     backBtn: 'Go Back',
     arialabel: 'Breadcrumb'
+  },
+  test: {
+    i18nBold: {
+      strong: 'This should have {boldStart} bold {boldEnd} text',
+      strongWithProps: 'This should have {boldStart} bold {boldEnd} text and allow a {prop}'
+    }
   }
 }
