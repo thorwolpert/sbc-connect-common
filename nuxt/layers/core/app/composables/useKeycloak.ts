@@ -1,6 +1,5 @@
 export const useKeycloak = () => {
-  const { $keycloak } = useNuxtApp()
-  const route = useRoute()
+  const { $keycloak, $i18n } = useNuxtApp()
 
   const loginRedirectUrl = ref<string | null>(null)
   const logoutRedirectUrl = ref<string | null>(null)
@@ -15,7 +14,7 @@ export const useKeycloak = () => {
     return $keycloak.login(
       {
         idpHint,
-        redirectUri: redirect ?? loginRedirectUrl.value ?? `${location.origin}/${route.fullPath}`
+        redirectUri: redirect ?? loginRedirectUrl.value ?? `${location.origin}/${$i18n.locale.value}`
       }
     )
   }
@@ -28,7 +27,7 @@ export const useKeycloak = () => {
   function logout (redirect?: string): Promise<void> {
     resetPiniaStores()
     return $keycloak.logout({
-      redirectUri: redirect ?? logoutRedirectUrl.value ?? `${location.origin}/${route.fullPath}`
+      redirectUri: redirect ?? logoutRedirectUrl.value ?? `${location.origin}/${$i18n.locale.value}`
     })
   }
 
@@ -73,6 +72,14 @@ export const useKeycloak = () => {
       })
   }
 
+  function setLoginRedirectUrl (url: string) {
+    loginRedirectUrl.value = url
+  }
+
+  function setLogoutRedirectUrl (url: string) {
+    logoutRedirectUrl.value = url
+  }
+
   function clearLoginRedirectUrl () {
     loginRedirectUrl.value = null
   }
@@ -87,6 +94,8 @@ export const useKeycloak = () => {
     getToken,
     clearLoginRedirectUrl,
     clearLogoutRedirectUrl,
+    setLoginRedirectUrl,
+    setLogoutRedirectUrl,
     isAuthenticated,
     kcUser,
     loginRedirectUrl,
