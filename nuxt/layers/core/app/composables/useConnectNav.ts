@@ -168,6 +168,10 @@ export function useConnectNav () {
   })
 
   return {
+    basicAccountOptions,
+    accountSettingsOptions,
+    switchAccountOptions,
+    createAccountOptions,
     loggedInUserOptions,
     loggedOutUserOptions,
     loggedOutUserOptionsMobile,
