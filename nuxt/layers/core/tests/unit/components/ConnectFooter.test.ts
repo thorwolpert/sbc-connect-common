@@ -11,9 +11,10 @@ describe('<ConnectFooter/>', () => {
       }
     })
 
-    const linkTexts = ['Home', 'Disclaimer', 'Privacy', 'Accessibility', 'Copyright']
+    const linkTexts = ['Home', 'Release Notes', 'Disclaimer', 'Privacy', 'Accessibility', 'Copyright']
     const linkHrefs = [
       '/en-CA',
+      'https://www.release-notes.bcregistry.gov.bc.ca',
       'https://www2.gov.bc.ca/gov/content/home/disclaimer',
       'https://www2.gov.bc.ca/gov/content/home/privacy',
       'https://www2.gov.bc.ca/gov/content/home/accessibility',

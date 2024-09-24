@@ -26,8 +26,8 @@ describe('<ConnectHeaderAuthenticatedOptionsAccountLabel />', () => {
         theme: 'header'
       }
     })
-    expect(wrapper.text()).toContain('JOHN DOE')
-    expect(wrapper.text()).toContain('JDOE')
+    expect(wrapper.text()).toContain('John Doe')
+    expect(wrapper.text()).toContain('jdoe')
     expect(wrapper.html()).toContain('text-bcGovColor-darkGray')
   })
 
@@ -42,7 +42,7 @@ describe('<ConnectHeaderAuthenticatedOptionsAccountLabel />', () => {
         theme: 'header'
       }
     })
-    expect(wrapper.text()).toContain('JANE DOE')
+    expect(wrapper.text()).toContain('Jane Doe')
     expect(wrapper.html()).toContain('U') // default initial when username is empty
   })
 
@@ -57,7 +57,7 @@ describe('<ConnectHeaderAuthenticatedOptionsAccountLabel />', () => {
         theme: 'header'
       }
     })
-    expect(wrapper.text()).toContain('FRANÇOIS DUPONT')
-    expect(wrapper.text()).toContain('FDUPONT')
+    expect(wrapper.text()).toContain('François Dupont')
+    expect(wrapper.text()).toContain('Ffdupont')
   })
 })

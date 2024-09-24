@@ -15,18 +15,7 @@ const accountStore = useConnectAccountStore()
       id="account-options-dropdown"
       :items="loggedInUserOptions"
       :ui="{
-        container: 'z-20 group rounded-md overflow-clip',
-        width: 'min-w-fit',
-        height: 'max-h-[75vh]',
-        item: {
-          base: 'group flex items-center gap-4 w-full',
-          disabled: 'cursor-default opacity-100 font-semibold',
-          icon: {
-            base: 'flex-shrink-0 size-6',
-            active: 'text-gray-500 dark:text-gray-400',
-            inactive: 'text-bcGovColor-midGray'
-          },
-        }
+        padding: 'py-3 px-0'
       }"
     >
       <!-- display full name/account/avatar on large screens -->
@@ -73,12 +62,12 @@ const accountStore = useConnectAccountStore()
 
       <!-- account setting slot -->
       <template #settings>
-        <span class="text-bcGovColor-darkGray">{{ $t('label.accountSettings').toLocaleUpperCase($i18n.locale) }}</span>
+        <span class="text-bcGovColor-darkGray">{{ $t('label.accountSettings') }}</span>
       </template>
 
       <!-- switch accounts slot -->
       <template #accounts>
-        <span class="text-bcGovColor-darkGray">{{ $t('label.switchAccount').toLocaleUpperCase($i18n.locale) }}</span>
+        <span class="text-bcGovColor-darkGray">{{ $t('label.switchAccount') }}</span>
       </template>
     </UDropdown>
   </div>

@@ -14,21 +14,21 @@ defineProps({
         background: 'bg-blue-300 dark:bg-[#E0E7ED]',
         text: 'font-semibold leading-none text-white dark:text-bcGovColor-darkGray truncate',
         placeholder: 'font-semibold leading-none text-white truncate dark:text-bcGovColor-darkGray text-xl',
-        rounded: 'rounded-sm'
+        rounded: 'rounded-none'
       }"
     />
     <div class="mx-2 flex flex-col text-left font-normal tracking-wide">
       <span
-        class="line-clamp-1 max-w-72 overflow-hidden text-ellipsis text-sm"
+        class="line-clamp-1 overflow-hidden text-ellipsis text-sm"
         :class="{'text-white': theme === 'header', 'text-bcGovColor-darkGray': theme === 'dropdown'}"
       >
-        {{ username.toLocaleUpperCase($i18n.locale) }}
+        {{ username }}
       </span>
       <span
-        class="line-clamp-1 max-w-72 overflow-hidden text-ellipsis text-xs"
+        class="line-clamp-1 overflow-hidden text-ellipsis text-xs opacity-75"
         :class="{'text-gray-300': theme === 'header', 'text-bcGovColor-midGray': theme === 'dropdown'}"
       >
-        {{ accountName.toLocaleUpperCase($i18n.locale) }}
+        {{ accountName }}
       </span>
     </div>
   </div>

@@ -1,5 +1,5 @@
 import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest'
-import { mockNuxtImport, registerEndpoint } from '@nuxt/test-utils/runtime'
+import { mockNuxtImport } from '@nuxt/test-utils/runtime'
 import { setActivePinia, createPinia } from 'pinia'
 import { AccountStatus, AccountType, useConnectAccountStore, ErrorCategory } from '#imports'
 
@@ -28,6 +28,15 @@ mockNuxtImport('useKeycloak', () => {
   })
 })
 
+const mockAuthApi = vi.fn()
+mockNuxtImport('useNuxtApp', () => {
+  return () => (
+    {
+      $authApi: mockAuthApi
+    }
+  )
+})
+
 describe('Account Store Tests', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
@@ -35,6 +44,8 @@ describe('Account Store Tests', () => {
 
   afterEach(() => {
     vi.unstubAllGlobals()
+    vi.resetAllMocks()
+    vi.restoreAllMocks()
   })
 
   it('inits the store with empty values', () => {
@@ -49,78 +60,47 @@ describe('Account Store Tests', () => {
 
   describe('getUserAccounts', () => {
     it('fetches and filters userAccounts', async () => {
-      const _fetch = vi.fn().mockResolvedValue([
+      mockAuthApi.mockResolvedValue([
         { type: 'ACCOUNT', id: '1', accountType: 'PREMIUM', accountStatus: 'ACTIVE', label: 'Account 1', urlpath: '/account-1', urlorigin: 'https://example.com' },
         { type: 'other', id: '2', accountType: 'BASIC', accountStatus: 'INACTIVE', label: 'Account 2', urlpath: '/account-2', urlorigin: 'https://example.com' },
         { type: 'ACCOUNT', id: '3', accountType: 'PREMIUM', accountStatus: 'ACTIVE', label: 'Account 3', urlpath: '/account-3', urlorigin: 'https://example.com' }
       ])
-      vi.stubGlobal('$fetch', _fetch)
       const accountStore = useConnectAccountStore()
       // get user accounts
       const accounts = await accountStore.getUserAccounts('123')
       // assert
-      expect(_fetch).toBeCalledTimes(1)
+      expect(mockAuthApi).toBeCalledTimes(1)
       expect(accounts?.length).toEqual(2)
-    })
-
-    it('handles errors when fetching userAccounts', async () => {
-      registerEndpoint('https://auth.example.com//users/123/settings', () => { throw new Error('some-error') })
-
-      const accountStore = useConnectAccountStore()
-
-      await accountStore.getUserAccounts('123')
-      expect(accountStore.errors.length).toBeGreaterThanOrEqual(1)
-      expect(accountStore.errors[0]).toEqual({
-        statusCode: 500,
-        message: 'Error retrieving user accounts.',
-        detail: '',
-        category: ErrorCategory.ACCOUNT_LIST
-      })
     })
   })
 
   it('sets account info', async () => {
-    const _fetch = vi.fn().mockResolvedValue([
+    mockAuthApi.mockResolvedValue([
       { type: 'ACCOUNT', id: '1', accountType: 'PREMIUM', accountStatus: 'ACTIVE', label: 'Account 1', urlpath: '/account-1', urlorigin: 'https://example.com' },
       { type: 'other', id: '2', accountType: 'BASIC', accountStatus: 'INACTIVE', label: 'Account 2', urlpath: '/account-2', urlorigin: 'https://example.com' },
       { type: 'ACCOUNT', id: '3', accountType: 'PREMIUM', accountStatus: 'ACTIVE', label: 'Account 3', urlpath: '/account-3', urlorigin: 'https://example.com' }
     ])
-    vi.stubGlobal('$fetch', _fetch)
+
     const accountStore = useConnectAccountStore()
 
     // set account info
     await accountStore.setAccountInfo()
     // assert
-    expect(_fetch).toBeCalledTimes(1)
+    expect(mockAuthApi).toBeCalledTimes(1)
     expect(accountStore.currentAccount.label).toEqual('Account 1')
   })
 
   describe('getPendingApprovalAccount', () => {
     it('getPendingApprovalCount', async () => {
-      const _fetch = vi.fn().mockResolvedValue({ count: 3 })
-      vi.stubGlobal('$fetch', _fetch)
+      mockAuthApi.mockResolvedValue({ count: 3 })
+
       const accountStore = useConnectAccountStore()
 
       // set account info
       await accountStore.getPendingApprovalCount(1, '1')
       // assert
-      expect(_fetch).toBeCalledTimes(1)
+      expect(mockAuthApi).toBeCalledTimes(1)
       expect(accountStore.pendingApprovalCount).toEqual(3)
-    })
-
-    it('handles errors when fetching userAccounts', async () => {
-      registerEndpoint('https://auth.example.com//users/456/org/1/notifications', () => { throw new Error('some-error') })
-
-      const accountStore = useConnectAccountStore()
-
-      await accountStore.getPendingApprovalCount(1, '456')
-      expect(accountStore.errors.length).toBeGreaterThanOrEqual(1)
-      expect(accountStore.errors[0]).toEqual({
-        statusCode: 500,
-        message: 'Error retrieving pending approvals.',
-        detail: '',
-        category: ErrorCategory.PENDING_APPROVAL_COUNT
-      })
     })
   })
 

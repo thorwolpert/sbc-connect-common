@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
+import type { BreadcrumbLink } from '#ui/types'
 
 const currentDir = dirname(fileURLToPath(import.meta.url))
 
@@ -69,9 +70,9 @@ export default defineNuxtConfig({
       authWebURL: process.env.NUXT_AUTH_WEB_URL,
       authApiURL: `${process.env.NUXT_AUTH_API_URL || ''}${process.env.NUXT_AUTH_API_VERSION || ''}`,
       ldClientId: process.env.NUXT_LD_CLIENT_ID || '',
-      appName: process.env.npm_package_name || ''
-      // registryHomeURL: process.env.NUXT_REGISTRY_HOME_URL
-      // appBaseUrl: process.env.NUXT_APP_BASE_URL
+      appName: process.env.npm_package_name || '',
+      registryHomeURL: process.env.NUXT_REGISTRY_HOME_URL,
+      version: `BRD UI v${process.env.npm_package_version || ''}`
     }
   },
 
@@ -104,3 +105,9 @@ export default defineNuxtConfig({
     storage: 'sessionStorage'
   }
 })
+
+declare module '#app' {
+  interface PageMeta {
+    breadcrumbs?: BreadcrumbLink[]
+  }
+}

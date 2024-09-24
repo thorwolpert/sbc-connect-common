@@ -44,7 +44,7 @@ describe('<ConnectHeaderUnauthenticatedOptions />', () => {
 
     expect(wrapper.html()).not.toContain('Logged Out Desktop')
 
-    const loginDropdown = wrapper.find('button[aria-label="Select Login Method"]')
+    const loginDropdown = wrapper.find('button[aria-label="Select log in method"]')
     expect(loginDropdown).toBeDefined()
     await loginDropdown.trigger('click')
     expect(wrapper.html()).toContain('Log in')

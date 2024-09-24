@@ -1,5 +1,9 @@
 export default {
   btn: {
+    appVersion: {
+      show: 'Show App Version',
+      hide: 'Hide App Version'
+    },
     bcRegHome: 'BC Registries Home',
     createAccount: 'Create Account',
     editProfile: 'Edit Profile',
@@ -20,7 +24,7 @@ export default {
     accountSettings: 'Account Settings',
     bcRegOLServices: 'BC Registries and Online Services',
     switchAccount: 'Switch Account',
-    selectLoginMethod: 'Select Login Method',
+    selectLoginMethod: 'Select log in method',
     bcsc: 'BC Services Card',
     bceid: 'BCeID',
     idir: 'IDIR'
@@ -32,6 +36,7 @@ export default {
   ConnectFooter: {
     navLabel: 'Useful Links', // <nav> aria-label
     home: 'Home',
+    releaseNotes: 'Release Notes',
     disclaimer: 'Disclaimer',
     privacy: 'Privacy',
     ally: 'Accessibility',
@@ -50,5 +55,16 @@ export default {
   ConnectLocaleSelect: {
     // aria-label
     label: 'Select a Language, current language: English'
+  },
+  ConnectBreadcrumb: {
+    default: 'Service BC Connect',
+    backBtn: 'Go Back',
+    arialabel: 'Breadcrumb'
+  },
+  test: {
+    i18nBold: {
+      strong: 'This should have {boldStart} bold {boldEnd} text',
+      strongWithProps: 'This should have {boldStart} bold {boldEnd} text and allow a {prop}'
+    }
   }
 }

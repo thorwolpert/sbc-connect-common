@@ -9,7 +9,9 @@ const items = computed<DropdownItem[][]>(() => {
     return {
       label: loc.name || 'N/A',
       icon: isCurrentLocal ? 'i-mdi-check' : '',
-      click: () => setLocale(loc.code)
+      click: () => setLocale(loc.code),
+      class: isCurrentLocal ? 'bg-bcGovGray-100 text-bcGovColor-activeBlue' : '',
+      iconClass: isCurrentLocal ? 'text-bcGovColor-activeBlue' : ''
     }
   })
   return [options]

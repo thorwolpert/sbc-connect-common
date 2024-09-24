@@ -97,8 +97,8 @@ describe('<ConnectLocaleSelect />', () => {
 
     const expectedItems = [
       [
-        { label: 'English', icon: '', click: expect.any(Function) },
-        { label: 'French', icon: '', click: expect.any(Function) }
+        { label: 'English', icon: '', class: '', iconClass: '', click: expect.any(Function) },
+        { label: 'French', icon: '', class: '', iconClass: '', click: expect.any(Function) }
       ]
     ]
 
