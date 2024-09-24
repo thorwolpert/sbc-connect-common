@@ -37,43 +37,60 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
     return currentAccountHasRoles || kcUserHasRoles
   }
 
-  // TODO: implement
+  /**
+   * Checks if the given account ID matches the ID of the current account in the store.
+   *
+   * @param accountId - The account ID to check.
+   * @returns True if the given account ID matches the current account ID, false otherwise.
+  */
+  function isCurrentAccount (accountId: number): boolean {
+    return accountId === Number(currentAccount.value.id)
+  }
+
   /** Get user information from AUTH */
-  // async function getAuthUserProfile (identifier: string): Promise<KCUser> {
-  //   const token = await getToken()
-  //   return await $fetch<KCUser>(`${apiURL}/users/${identifier}`, {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`
-  //     }
-  //   })
-  // }
+  function getAuthUserProfile (identifier: string) {
+    try {
+      return $authApi<KCUser>(`/users/${identifier}`, {
+        onResponseError ({ response }) {
+          errors.value.push({
+            statusCode: response.status || 500,
+            message: response._data?.message || 'Error fetching user info.',
+            detail: response._data.detail || '',
+            category: ErrorCategory.USER_INFO
+          })
+        }
+      })
+    } catch {
+      console.warn('Error fetching user info.')
+    }
+  }
 
-  // TODO: implement
   /** Update user information in AUTH with current token info */
-  // async function updateAuthUserInfo (): Promise<void | KCUser> {
-  //   const token = await getToken()
-  //   return await $fetch<KCUser | void>(`${apiURL}/users`, {
-  //     method: 'POST',
-  //     headers: {
-  //       Authorization: `Bearer ${token}`
-  //     },
-  //     isLogin: true
-  //   })
-  // }
+  async function updateAuthUserInfo (): Promise<void | KCUser> {
+    try {
+      return await $authApi<KCUser>('/users', {
+        method: 'POST',
+        body: { isLogin: true }
+      })
+    } catch (e) {
+      logFetchError(e, 'Error updating auth user info')
+    }
+  }
 
-  // TODO: implement
   /** Set user name information */
-  // async function setUserName () {
-  //   if (kcUser.value?.loginSource === LoginSource.BCEID) {
-  //     // get from auth
-  //     const authUserInfo = await getAuthUserProfile('@me')
-  //     if (authUserInfo) {
-  //       userFirstName.value = authUserInfo.firstName
-  //       userLastName.value = authUserInfo.lastName
-  //     }
-  //     return
-  //   }
-  // }
+  async function setUserName () {
+    if (user.value?.loginSource === LoginSource.BCEID) {
+      // get from auth
+      const authUserInfo = await getAuthUserProfile('@me')
+      if (authUserInfo) {
+        userFirstName.value = authUserInfo.firstName
+        userLastName.value = authUserInfo.lastName
+      }
+      return
+    }
+    userFirstName.value = user.value?.firstName || '-'
+    userLastName.value = user.value?.lastName || ''
+  }
 
   /** Get the user's account list */
   async function getUserAccounts (keycloakGuid: string): Promise<Account[] | undefined> {
@@ -95,7 +112,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
         return undefined
       }
     } catch (e) {
-      logFetchError(e, 'Error retrieving user accounts')
+      console.error('Error retrieving user accounts.', e)
       return undefined
     }
   }
@@ -106,7 +123,9 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
       const response = await getUserAccounts(kcUser.value?.keycloakGuid)
       if (response && response[0] !== undefined) {
         userAccounts.value = response
-        currentAccount.value = response[0]
+        if (!currentAccount.value.id || !userAccounts.value.some(account => account.id === currentAccount.value.id)) {
+          currentAccount.value = response[0]
+        }
       }
     }
   }
@@ -156,8 +175,11 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
     errors,
     userFullName,
     isStaffOrSbcStaff,
-    // updateAuthUserInfo,
+    updateAuthUserInfo,
+    setUserName,
     hasRoles,
+    isCurrentAccount,
+    getAuthUserProfile,
     setAccountInfo,
     getUserAccounts,
     switchCurrentAccount,

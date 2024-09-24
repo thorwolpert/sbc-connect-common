@@ -3,9 +3,8 @@ export default defineNuxtRouteMiddleware(async () => {
     const { isAuthenticated, kcUser } = useKeycloak()
     if (isAuthenticated.value) {
       const accountStore = useConnectAccountStore()
-      if (accountStore.userAccounts.length === 0) { // only try loading accounts if there is none
-        await accountStore.setAccountInfo()
-      }
+      await accountStore.setAccountInfo()
+      await accountStore.setUserName()
       if (accountStore.currentAccount.id && kcUser.value.keycloakGuid) { // check for pending approvals
         await accountStore.getPendingApprovalCount(parseInt(accountStore.currentAccount.id), kcUser.value.keycloakGuid)
       }
