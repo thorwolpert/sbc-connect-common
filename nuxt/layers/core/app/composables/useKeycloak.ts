@@ -1,5 +1,9 @@
 export const useKeycloak = () => {
-  const { $keycloak, $i18n } = useNuxtApp()
+  const { $keycloak } = useNuxtApp()
+  const route = useRoute()
+
+  const loginRedirectUrl = ref<string | null>(null)
+  const logoutRedirectUrl = ref<string | null>(null)
 
   /**
    * Logs the user in using the idpHint 'bcsc', 'idir' or 'bceid' and an optional redirect URL.
@@ -11,7 +15,7 @@ export const useKeycloak = () => {
     return $keycloak.login(
       {
         idpHint,
-        redirectUri: redirect ?? `${location.origin}/${$i18n.locale.value}`
+        redirectUri: redirect ?? loginRedirectUrl.value ?? `${location.origin}/${route.fullPath}`
       }
     )
   }
@@ -24,7 +28,7 @@ export const useKeycloak = () => {
   function logout (redirect?: string): Promise<void> {
     resetPiniaStores()
     return $keycloak.logout({
-      redirectUri: redirect ?? `${location.origin}/${$i18n.locale.value}`
+      redirectUri: redirect ?? logoutRedirectUrl.value ?? `${location.origin}/${route.fullPath}`
     })
   }
 
@@ -69,11 +73,23 @@ export const useKeycloak = () => {
       })
   }
 
+  function clearLoginRedirectUrl () {
+    loginRedirectUrl.value = null
+  }
+
+  function clearLogoutRedirectUrl () {
+    logoutRedirectUrl.value = null
+  }
+
   return {
     login,
     logout,
     getToken,
+    clearLoginRedirectUrl,
+    clearLogoutRedirectUrl,
     isAuthenticated,
-    kcUser
+    kcUser,
+    loginRedirectUrl,
+    logoutRedirectUrl
   }
 }
