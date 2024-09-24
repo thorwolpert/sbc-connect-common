@@ -1,5 +1,5 @@
 {
-  "name": "@sbc-connect/nuxt-core-layer",
+  "name": "@daxiom/nuxt-core-layer-test",
   "type": "module",
   "version": "0.0.1",
   "main": "./nuxt.config.ts",
