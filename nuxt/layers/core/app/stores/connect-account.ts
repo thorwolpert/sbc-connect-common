@@ -112,7 +112,7 @@ export const useConnectAccountStore = defineStore('nuxt-core-connect-account-sto
         return undefined
       }
     } catch (e) {
-      console.error('Error retrieving user accounts.', e)
+      logFetchError(e, 'Error retrieving user accounts')
       return undefined
     }
   }
