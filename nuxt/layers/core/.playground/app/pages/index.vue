@@ -2,11 +2,11 @@
 const { isAuthenticated, login, logout } = useKeycloak()
 const ldStore = useConnectLaunchdarklyStore()
 
-// setBreadcrumbs([
-//   { label: 'test', to: useRuntimeConfig().public.registryHomeURL },
-//   { label: 'test 2', to: useRuntimeConfig().public.registryHomeURL },
-//   { label: 'test 3' }
-// ])
+setBreadcrumbs([
+  { label: 'test', to: useRuntimeConfig().public.registryHomeURL },
+  { label: 'test 2', to: useRuntimeConfig().public.registryHomeURL },
+  { label: 'test 3' }
+])
 
 onMounted(() => {
   const test = ldStore.getStoredFlag('allowable-business-passcode-types')
