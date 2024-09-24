@@ -11,8 +11,9 @@ const isTouchScreen = useMediaQuery('(pointer: coarse)')
     <UPopover
       :mode="isTouchScreen ? 'click' : 'hover'"
       :ui="{
-        background: 'bg-gray-700',
+        background: 'bg-gray-700 opacity-90',
         ring: 'ring-1 ring-gray-700',
+        rounded: 'rounded'
       }"
     >
       <template #default="{ open }">
