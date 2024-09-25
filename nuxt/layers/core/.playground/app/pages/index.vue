@@ -25,5 +25,11 @@ onMounted(() => {
       <UButton v-else-if="isAuthenticated" label="Logout" @click="logout()" />
       <div> {{ isAuthenticated }} </div>
     </ClientOnly>
+
+    <ConnectPageSection
+      :heading="{ label: 'Hello World', icon: 'i-mdi-account-multiple' }"
+    >
+      some stuff
+    </ConnectPageSection>
   </div>
 </template>
