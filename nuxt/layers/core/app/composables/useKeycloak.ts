@@ -11,10 +11,12 @@ export const useKeycloak = () => {
    * @returns A promise that resolves when login is complete.
    */
   function login (idpHint: IdpHint, redirect?: string): Promise<void> {
+    const redirectUri = redirect ?? loginRedirectUrl.value ?? `${location.origin}/${$i18n.locale.value}`
+    console.log('Redirecting to:', redirectUri)
     return $keycloak.login(
       {
         idpHint,
-        redirectUri: redirect ?? loginRedirectUrl.value ?? `${location.origin}/${$i18n.locale.value}`
+        redirectUri
       }
     )
   }
@@ -25,9 +27,11 @@ export const useKeycloak = () => {
    * @returns A promise that resolves when logout is complete.
    */
   function logout (redirect?: string): Promise<void> {
+    const redirectUri = redirect ?? logoutRedirectUrl.value ?? `${location.origin}/${$i18n.locale.value}`
+    console.log('Redirecting to:', redirectUri)
     resetPiniaStores()
     return $keycloak.logout({
-      redirectUri: redirect ?? logoutRedirectUrl.value ?? `${location.origin}/${$i18n.locale.value}`
+      redirectUri
     })
   }
 
