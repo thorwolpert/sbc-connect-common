@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime'
 import { enI18n } from '~~/tests/unit/mocks/i18n'
-import { ConnectHeaderAuthenticatedOptionsNotifications } from '#components'
+import { ConnectHeaderNotifications } from '#components'
 
 mockNuxtImport('useConnectNav', () => {
   return () => (
@@ -27,9 +27,9 @@ mockNuxtImport('useConnectAccountStore', () => {
   )
 })
 
-describe('<ConnectHeaderAuthenticatedOptionsNotifications />', () => {
+describe('<ConnectHeaderNotifications />', () => {
   it('renders', async () => {
-    const wrapper = await mountSuspended(ConnectHeaderAuthenticatedOptionsNotifications, {
+    const wrapper = await mountSuspended(ConnectHeaderNotifications, {
       global: {
         plugins: [enI18n]
       }
@@ -41,7 +41,7 @@ describe('<ConnectHeaderAuthenticatedOptionsNotifications />', () => {
   })
 
   it('shows the chip when pendingApprovalCount is greater than 0', async () => {
-    const wrapper = await mountSuspended(ConnectHeaderAuthenticatedOptionsNotifications, {
+    const wrapper = await mountSuspended(ConnectHeaderNotifications, {
       global: {
         plugins: [enI18n]
       }
@@ -53,7 +53,7 @@ describe('<ConnectHeaderAuthenticatedOptionsNotifications />', () => {
 
   it('does not show the chip when pendingApprovalCount is 0', async () => {
     mockPendingApprovalCount = 0
-    const wrapper = await mountSuspended(ConnectHeaderAuthenticatedOptionsNotifications, {
+    const wrapper = await mountSuspended(ConnectHeaderNotifications, {
       global: {
         plugins: [enI18n]
       }
@@ -65,7 +65,7 @@ describe('<ConnectHeaderAuthenticatedOptionsNotifications />', () => {
 
   it('displays the correct aria-label for notifications', async () => {
     mockPendingApprovalCount = 4
-    const wrapper = await mountSuspended(ConnectHeaderAuthenticatedOptionsNotifications, {
+    const wrapper = await mountSuspended(ConnectHeaderNotifications, {
       global: {
         plugins: [enI18n]
       }
@@ -77,7 +77,7 @@ describe('<ConnectHeaderAuthenticatedOptionsNotifications />', () => {
 
   it('renders the correct notification message in the slot', async () => {
     mockPendingApprovalCount = 4
-    const wrapper = await mountSuspended(ConnectHeaderAuthenticatedOptionsNotifications, {
+    const wrapper = await mountSuspended(ConnectHeaderNotifications, {
       global: {
         plugins: [enI18n]
       }

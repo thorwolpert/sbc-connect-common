@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { enI18n, frI18n } from '~~/tests/unit/mocks/i18n'
-import { ConnectHeaderAuthenticatedOptionsAccountLabel } from '#components'
+import { ConnectHeaderAccountLabel } from '#components'
 
-describe('<ConnectHeaderAuthenticatedOptionsAccountLabel />', () => {
+describe('<ConnectHeaderAccountLabel />', () => {
   it('renders with default props', async () => {
-    const wrapper = await mountSuspended(ConnectHeaderAuthenticatedOptionsAccountLabel, {
+    const wrapper = await mountSuspended(ConnectHeaderAccountLabel, {
       global: {
         plugins: [enI18n]
       }
@@ -16,7 +16,7 @@ describe('<ConnectHeaderAuthenticatedOptionsAccountLabel />', () => {
   })
 
   it('renders with props', async () => {
-    const wrapper = await mountSuspended(ConnectHeaderAuthenticatedOptionsAccountLabel, {
+    const wrapper = await mountSuspended(ConnectHeaderAccountLabel, {
       global: {
         plugins: [enI18n]
       },
@@ -32,7 +32,7 @@ describe('<ConnectHeaderAuthenticatedOptionsAccountLabel />', () => {
   })
 
   it('renders correctly with empty username', async () => {
-    const wrapper = await mountSuspended(ConnectHeaderAuthenticatedOptionsAccountLabel, {
+    const wrapper = await mountSuspended(ConnectHeaderAccountLabel, {
       global: {
         plugins: [enI18n]
       },
@@ -47,7 +47,7 @@ describe('<ConnectHeaderAuthenticatedOptionsAccountLabel />', () => {
   })
 
   it('renders correctly with different locale', async () => {
-    const wrapper = await mountSuspended(ConnectHeaderAuthenticatedOptionsAccountLabel, {
+    const wrapper = await mountSuspended(ConnectHeaderAccountLabel, {
       global: {
         plugins: [frI18n]
       },

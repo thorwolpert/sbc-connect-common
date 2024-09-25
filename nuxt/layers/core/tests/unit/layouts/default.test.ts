@@ -38,7 +38,7 @@ describe('Default Layout', () => {
       }
     })
 
-    const header = wrapper.getByTestId('connect-main-header')
+    const header = wrapper.getByTestId('connect-header-wrapper')
     const footer = wrapper.getByTestId('connect-main-footer')
     const slot = wrapper.getByTestId('connect-default-layout-slot')
 
@@ -46,6 +46,6 @@ describe('Default Layout', () => {
     expect(header).toBeDefined()
     expect(footer).toBeDefined()
     expect(slot).toBeDefined()
-    expect(slot.outerHTML).toEqual('<div class="mx-auto w-full max-w-bcGovLg grow" data-testid="connect-default-layout-slot"></div>')
+    expect(slot.outerHTML).toEqual('<main class="mx-auto w-full max-w-bcGovLg grow" data-testid="connect-default-layout-slot"></main>')
   })
 })
