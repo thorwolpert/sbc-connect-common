@@ -8,11 +8,9 @@ export const useKeycloak = () => {
    * @returns A promise that resolves when login is complete.
    */
   function login (idpHint: IdpHint, redirect?: string): Promise<void> {
-    const loginRedirectUrl = sessionStorage.getItem('sbc-connect-login-redirect-url')
-
+    const loginRedirectUrl = sessionStorage.getItem(ConnectStorageKeys.LOGIN_REDIRECT_URL)
     const redirectUri = redirect ?? loginRedirectUrl ?? `${location.origin}/${$i18n.locale.value}`
 
-    console.log('Redirecting to:', redirectUri)
     return $keycloak.login(
       {
         idpHint,
@@ -27,9 +25,9 @@ export const useKeycloak = () => {
    * @returns A promise that resolves when logout is complete.
    */
   function logout (redirect?: string): Promise<void> {
-    const logoutRedirectUrl = sessionStorage.getItem('sbc-connect-logout-redirect-url')
+    const logoutRedirectUrl = sessionStorage.getItem(ConnectStorageKeys.LOGOUT_REDIRECT_URL)
     const redirectUri = redirect ?? logoutRedirectUrl ?? `${location.origin}/${$i18n.locale.value}`
-    console.log('Redirecting to:', redirectUri)
+
     resetPiniaStores()
     return $keycloak.logout({
       redirectUri
@@ -78,19 +76,19 @@ export const useKeycloak = () => {
   }
 
   function setLoginRedirectUrl (url: string) {
-    sessionStorage.setItem('sbc-connect-login-redirect-url', url)
+    sessionStorage.setItem(ConnectStorageKeys.LOGIN_REDIRECT_URL, url)
   }
 
   function setLogoutRedirectUrl (url: string) {
-    sessionStorage.setItem('sbc-connect-logout-redirect-url', url)
+    sessionStorage.setItem(ConnectStorageKeys.LOGOUT_REDIRECT_URL, url)
   }
 
   function clearLoginRedirectUrl () {
-    sessionStorage.removeItem('sbc-connect-login-redirect-url')
+    sessionStorage.removeItem(ConnectStorageKeys.LOGIN_REDIRECT_URL)
   }
 
   function clearLogoutRedirectUrl () {
-    sessionStorage.removeItem('sbc-connect-logout-redirect-url')
+    sessionStorage.removeItem(ConnectStorageKeys.LOGOUT_REDIRECT_URL)
   }
 
   return {
