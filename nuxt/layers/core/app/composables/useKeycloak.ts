@@ -1,9 +1,6 @@
 export const useKeycloak = () => {
   const { $keycloak, $i18n } = useNuxtApp()
 
-  const loginRedirectUrl = ref<string | null>(null)
-  const logoutRedirectUrl = ref<string | null>(null)
-
   /**
    * Logs the user in using the idpHint 'bcsc', 'idir' or 'bceid' and an optional redirect URL.
    * @param idpHint - The identity provider hint to use for login.
@@ -11,7 +8,10 @@ export const useKeycloak = () => {
    * @returns A promise that resolves when login is complete.
    */
   function login (idpHint: IdpHint, redirect?: string): Promise<void> {
-    const redirectUri = redirect ?? loginRedirectUrl.value ?? `${location.origin}/${$i18n.locale.value}`
+    const loginRedirectUrl = sessionStorage.getItem('sbc-connect-login-redirect-url')
+
+    const redirectUri = redirect ?? loginRedirectUrl ?? `${location.origin}/${$i18n.locale.value}`
+
     console.log('Redirecting to:', redirectUri)
     return $keycloak.login(
       {
@@ -27,7 +27,8 @@ export const useKeycloak = () => {
    * @returns A promise that resolves when logout is complete.
    */
   function logout (redirect?: string): Promise<void> {
-    const redirectUri = redirect ?? logoutRedirectUrl.value ?? `${location.origin}/${$i18n.locale.value}`
+    const logoutRedirectUrl = sessionStorage.getItem('sbc-connect-logout-redirect-url')
+    const redirectUri = redirect ?? logoutRedirectUrl ?? `${location.origin}/${$i18n.locale.value}`
     console.log('Redirecting to:', redirectUri)
     resetPiniaStores()
     return $keycloak.logout({
@@ -77,19 +78,19 @@ export const useKeycloak = () => {
   }
 
   function setLoginRedirectUrl (url: string) {
-    loginRedirectUrl.value = url
+    sessionStorage.setItem('sbc-connect-login-redirect-url', url)
   }
 
   function setLogoutRedirectUrl (url: string) {
-    logoutRedirectUrl.value = url
+    sessionStorage.setItem('sbc-connect-logout-redirect-url', url)
   }
 
   function clearLoginRedirectUrl () {
-    loginRedirectUrl.value = null
+    sessionStorage.removeItem('sbc-connect-login-redirect-url')
   }
 
   function clearLogoutRedirectUrl () {
-    logoutRedirectUrl.value = null
+    sessionStorage.removeItem('sbc-connect-logout-redirect-url')
   }
 
   return {
@@ -101,8 +102,6 @@ export const useKeycloak = () => {
     setLoginRedirectUrl,
     setLogoutRedirectUrl,
     isAuthenticated,
-    kcUser,
-    loginRedirectUrl,
-    logoutRedirectUrl
+    kcUser
   }
 }
