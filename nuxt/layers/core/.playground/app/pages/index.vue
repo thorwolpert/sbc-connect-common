@@ -2,17 +2,19 @@
 const { isAuthenticated, login, logout } = useKeycloak()
 const ldStore = useConnectLaunchdarklyStore()
 
-// setBreadcrumbs([
-//   { label: 'test', to: useRuntimeConfig().public.registryHomeURL },
-//   { label: 'test 2', to: useRuntimeConfig().public.registryHomeURL },
-//   { label: 'test 3' }
-// ])
+setBreadcrumbs([
+  { label: 'test', to: useRuntimeConfig().public.registryHomeURL },
+  { label: 'test 2', to: useRuntimeConfig().public.registryHomeURL },
+  { label: 'test 3' }
+])
 
 onMounted(() => {
   const test = ldStore.getStoredFlag('allowable-business-passcode-types')
   console.log('test: ', test)
   const route = useRoute()
   console.log(route)
+  const toast = useToast()
+  toast.add({ description: 'testing' })
 })
 </script>
 <template>
@@ -25,5 +27,11 @@ onMounted(() => {
       <UButton v-else-if="isAuthenticated" label="Logout" @click="logout()" />
       <div> {{ isAuthenticated }} </div>
     </ClientOnly>
+
+    <ConnectPageSection
+      :heading="{ label: 'Hello World', icon: 'i-mdi-account-multiple' }"
+    >
+      some stuff
+    </ConnectPageSection>
   </div>
 </template>

@@ -38,6 +38,9 @@ dependencies:
   launchdarkly-vue-client-sdk:
     specifier: ^2.2.2
     version: 2.2.2(vue@3.4.32)
+  maska:
+    specifier: ^3.0.2
+    version: 3.0.2
   zod:
     specifier: ^3.23.8
     version: 3.23.8
@@ -7227,6 +7230,10 @@ packages:
 
   /markdown-table@3.0.3:
     resolution: {integrity: sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==}
+    dev: false
+
+  /maska@3.0.2:
+    resolution: {integrity: sha512-onh3JCFrkUTFrrhhDpfQZGwQ830zeEUEVbuQDZpLzY/JXJ5QR+hQ6FJ7lcw1NikAixtpGXkxxC+teO5glT3Vyw==}
     dev: false
 
   /mdast-util-find-and-replace@3.0.1:

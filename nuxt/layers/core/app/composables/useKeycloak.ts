@@ -1,9 +1,6 @@
 export const useKeycloak = () => {
   const { $keycloak, $i18n } = useNuxtApp()
 
-  const loginRedirectUrl = ref<string | null>(null)
-  const logoutRedirectUrl = ref<string | null>(null)
-
   /**
    * Logs the user in using the idpHint 'bcsc', 'idir' or 'bceid' and an optional redirect URL.
    * @param idpHint - The identity provider hint to use for login.
@@ -11,10 +8,13 @@ export const useKeycloak = () => {
    * @returns A promise that resolves when login is complete.
    */
   function login (idpHint: IdpHint, redirect?: string): Promise<void> {
+    const loginRedirectUrl = sessionStorage.getItem(ConnectStorageKeys.LOGIN_REDIRECT_URL)
+    const redirectUri = redirect ?? loginRedirectUrl ?? `${location.origin}/${$i18n.locale.value}`
+
     return $keycloak.login(
       {
         idpHint,
-        redirectUri: redirect ?? loginRedirectUrl.value ?? `${location.origin}/${$i18n.locale.value}`
+        redirectUri
       }
     )
   }
@@ -25,9 +25,12 @@ export const useKeycloak = () => {
    * @returns A promise that resolves when logout is complete.
    */
   function logout (redirect?: string): Promise<void> {
+    const logoutRedirectUrl = sessionStorage.getItem(ConnectStorageKeys.LOGOUT_REDIRECT_URL)
+    const redirectUri = redirect ?? logoutRedirectUrl ?? `${location.origin}/${$i18n.locale.value}`
+
     resetPiniaStores()
     return $keycloak.logout({
-      redirectUri: redirect ?? logoutRedirectUrl.value ?? `${location.origin}/${$i18n.locale.value}`
+      redirectUri
     })
   }
 
@@ -73,19 +76,19 @@ export const useKeycloak = () => {
   }
 
   function setLoginRedirectUrl (url: string) {
-    loginRedirectUrl.value = url
+    sessionStorage.setItem(ConnectStorageKeys.LOGIN_REDIRECT_URL, url)
   }
 
   function setLogoutRedirectUrl (url: string) {
-    logoutRedirectUrl.value = url
+    sessionStorage.setItem(ConnectStorageKeys.LOGOUT_REDIRECT_URL, url)
   }
 
   function clearLoginRedirectUrl () {
-    loginRedirectUrl.value = null
+    sessionStorage.removeItem(ConnectStorageKeys.LOGIN_REDIRECT_URL)
   }
 
   function clearLogoutRedirectUrl () {
-    logoutRedirectUrl.value = null
+    sessionStorage.removeItem(ConnectStorageKeys.LOGOUT_REDIRECT_URL)
   }
 
   return {
@@ -97,8 +100,6 @@ export const useKeycloak = () => {
     setLoginRedirectUrl,
     setLogoutRedirectUrl,
     isAuthenticated,
-    kcUser,
-    loginRedirectUrl,
-    logoutRedirectUrl
+    kcUser
   }
 }

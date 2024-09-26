@@ -27,7 +27,7 @@ function resolveBackHref () {
   <div class="bg-blue-350">
     <div class="mx-auto flex max-w-bcGovLg items-center divide-x divide-gray-300 px-4 py-2">
       <UButton
-        class="mr-3 mt-px size-[28px] rounded-full px-1"
+        class="mr-3 mt-px size-[28px] rounded-full px-1 text-blue-500"
         color="white"
         :disabled="breadcrumbs.length < 2"
         icon="i-mdi-arrow-left"

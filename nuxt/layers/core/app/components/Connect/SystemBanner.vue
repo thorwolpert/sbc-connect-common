@@ -14,7 +14,7 @@ onMounted(async () => {
 })
 </script>
 <template>
-  <div v-if="systemMessage !== ''" role="alert" class="flex justify-center bg-bcGovColor-navDivider px-5 py-2">
+  <div v-if="systemMessage.trim()" role="alert" class="flex justify-center bg-bcGovColor-navDivider px-5 py-2">
     <!-- eslint-disable vue/no-v-html tailwindcss/no-custom-classname -->
     <span class="vhtml mx-auto max-w-bcGovLg text-bcGovColor-darkGray" v-html="systemMessage" />
   </div>

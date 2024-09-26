@@ -19,6 +19,7 @@ const items = computed<DropdownItem[][]>(() => {
 </script>
 <template>
   <UDropdown
+    v-if="items[0] && items[0].length > 1"
     id="locale-select-dropdown"
     data-testid="locale-select-dropdown"
     :items="items"

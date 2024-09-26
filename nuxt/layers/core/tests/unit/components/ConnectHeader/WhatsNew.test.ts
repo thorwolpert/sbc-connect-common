@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
-import { ConnectHeaderUnauthenticatedOptionsWhatsNew } from '#components'
+import { ConnectHeaderWhatsNew } from '#components'
 import { enI18n } from '~~/tests/unit/mocks/i18n'
 
 // TODO: add tests when whats new is implemented
-describe('<ConnectHeaderUnauthenticatedOptionsWhatsNew />', () => {
+describe('<ConnectHeaderWhatsNew />', () => {
   it('renders', async () => {
-    const wrapper = await mountSuspended(ConnectHeaderUnauthenticatedOptionsWhatsNew, {
+    const wrapper = await mountSuspended(ConnectHeaderWhatsNew, {
       global: {
         plugins: [enI18n]
       }

@@ -6,12 +6,12 @@
     <ConnectHeader />
     <ConnectSystemBanner />
     <ConnectBreadcrumb />
-    <div
+    <main
       class="mx-auto w-full max-w-bcGovLg grow"
       data-testid="connect-default-layout-slot"
     >
       <slot />
-    </div>
+    </main>
     <ConnectFooter />
   </div>
 </template>
