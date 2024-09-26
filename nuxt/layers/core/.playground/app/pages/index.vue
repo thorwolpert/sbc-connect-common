@@ -13,6 +13,8 @@ onMounted(() => {
   console.log('test: ', test)
   const route = useRoute()
   console.log(route)
+  const toast = useToast()
+  toast.add({ description: 'testing' })
 })
 </script>
 <template>

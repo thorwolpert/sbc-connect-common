@@ -103,7 +103,8 @@ export default defineAppConfig({
       variant: {
         header: 'text-{color}-500 tracking-wide text-base hover:text-{color}-600 disabled:text-{color}-500 dark:text-white dark:hover:text-blue-300 dark:disabled:text-{color}-400 underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-{color}-500 dark:focus-visible:ring-white',
         solid: 'shadow-sm text-white dark:text-gray-900 bg-{color}-500 hover:bg-{color}-600 disabled:bg-{color}-500 dark:bg-[#E0E7ED] dark:hover:bg-bcGovGray-500 dark:disabled:bg-{color}-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-{color}-500 dark:focus-visible:outline-white',
-        outline: 'ring-1 ring-inset ring-current text-{color}-500 dark:text-[#E0E7ED] hover:bg-{color}-50 disabled:bg-transparent dark:hover:bg-[#E0E7ED]/25 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-{color}-500 dark:focus-visible:ring-white'
+        outline: 'ring-1 ring-inset ring-current text-{color}-500 dark:text-[#E0E7ED] hover:bg-{color}-50 disabled:bg-transparent dark:hover:bg-[#E0E7ED]/25 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-{color}-500 dark:focus-visible:ring-white',
+        notification_close_btn: 'text-white hover:opacity-90 underline-offset-4 hover:underline focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-white'
       }
       // default: {
       //   size: 'bcGov'
@@ -220,9 +221,17 @@ export default defineAppConfig({
       title: 'text-sm font-medium text-white',
       description: 'mt-1 text-sm leading-4 text-white',
       background: 'bg-gray-700',
+      rounded: 'rounded',
+      ring: 'ring-0',
       progress: {
         base: 'hidden',
         background: 'bg-{color}-500 dark:bg-{color}-400'
+      },
+      default: {
+        closeButton: {
+          color: 'white',
+          variant: 'notification_close_btn'
+        }
       }
     },
     notifications: {
