@@ -5,7 +5,6 @@ const props = defineProps({
 
 const attrs = useAttrs()
 const { t } = useI18n()
-const { $sanitize } = useNuxtApp()
 
 const textToDisplay = computed(() => {
   const translationProps = {
@@ -15,7 +14,7 @@ const textToDisplay = computed(() => {
     italicStart: '<em>',
     italicEnd: '</em>'
   }
-  return $sanitize(t(props.translationPath, translationProps))
+  return t(props.translationPath, translationProps)
 })
 </script>
 <template>
