@@ -64,7 +64,8 @@ export default {
   test: {
     i18nBold: {
       strong: 'This should have {boldStart} bold {boldEnd} text',
-      strongWithProps: 'This should have {boldStart} bold {boldEnd} text and allow a {prop}'
+      strongWithProps: 'This should have {boldStart} bold {boldEnd} text and allow a {prop}',
+      italic: 'Italic test {italicStart} goes here {italicEnd}.'
     }
   }
 }

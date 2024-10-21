@@ -11,7 +11,9 @@ const textToDisplay = computed(() => {
   const translationProps = {
     ...attrs,
     boldStart: '<strong>',
-    boldEnd: '</strong>'
+    boldEnd: '</strong>',
+    italicStart: '<em>',
+    italicEnd: '</em>'
   }
   return $sanitize(t(props.translationPath, translationProps))
 })
