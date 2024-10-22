@@ -2,6 +2,19 @@
 const { isAuthenticated, login, logout } = useKeycloak()
 const ldStore = useConnectLaunchdarklyStore()
 
+const actions = [
+  {
+    label: 'test 1',
+    variant: 'outline',
+    click: () => console.log('clicked 1')
+  },
+  {
+    label: 'test 2',
+    to: 'https://ui.nuxt.com/components/button#props',
+    external: true
+  }
+]
+
 setBreadcrumbs([
   { label: 'test', to: useRuntimeConfig().public.registryHomeURL },
   { label: 'test 2', to: useRuntimeConfig().public.registryHomeURL },
@@ -29,9 +42,12 @@ onMounted(() => {
     </ClientOnly>
 
     <ConnectPageSection
-      :heading="{ label: 'Hello World', icon: 'i-mdi-account-multiple' }"
+      :heading="{ label: 'Hello World', icon: 'i-mdi-account-multiple', bgColor: 'bg-red-200' }"
+      :actions="actions"
     >
       some stuff
     </ConnectPageSection>
+
+    <ConnectI18nBold translation-path="test.i18nBold.italic" />
   </div>
 </template>
